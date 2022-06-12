@@ -1,0 +1,166 @@
+@keyframes test {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wrapper {
+    width: 100%;
+    position: relative;
+}
+.wrapperTop {
+    padding: 14px 40px;
+}
+.wrapperBottom {
+    padding: 18px 40px;
+}
+/* Animation */
+
+.wrapperBottom.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px;
+    z-index: 100;
+    animation: test 0.4s linear;
+}
+.wrapperTop,
+.wrapperBottom {
+    border-bottom: 1px solid var(--color-border);
+}
+.title {
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+.main {
+    display: flex;
+}
+
+.logo img {
+    max-width: 150px;
+}
+.mainLeft {
+    width: calc(100% / 6);
+    padding-right: 20px;
+}
+.mainCenter {
+    width: calc(100% / 3);
+    display: flex;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-around;
+}
+.product {
+    position: relative;
+}
+.productItem {
+    position: absolute;
+}
+.product,
+.home,
+.about {
+    transition: all 0.2s linear;
+}
+.home:hover,
+.about:hover,
+.product:hover {
+    color: var(--color-hover);
+}
+
+.mainRight {
+    width: calc(100% / 2);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.search {
+    width: 90%;
+    height: 46px;
+    margin-left: 40px;
+}
+.searchForm {
+    position: relative;
+    height: 100%;
+}
+.searchInput {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 57px;
+    position: absolute;
+    height: 100%;
+    padding-left: 30px;
+    background-color: transparent;
+    font-size: 1.4rem;
+}
+.searchInput:focus {
+    border-color: #ccc;
+}
+.searchIcon {
+    position: absolute;
+    right: 5%;
+    top: 20%;
+    font-size: 1.8rem;
+}
+
+.user {
+    margin: 0 20px;
+    font-size: 2.6rem;
+}
+.user a {
+    transition: all 0.2s linear;
+}
+.user a:hover {
+    color: var(--color-hover);
+}
+
+.cart {
+    position: relative;
+    font-size: 2.6rem;
+    transition: 0.2s all linear;
+    cursor: pointer;
+}
+.cart:hover {
+    color: var(--color-hover);
+}
+
+.login {
+    margin-left: 20px;
+    background-color: var(--primary);
+    height: 84%;
+    border-radius: 4px;
+    border: transparent;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.login:hover {
+    background-color: rgb(206, 28, 69);
+}
+.mainRight .login a {
+    color: var(--white);
+    /* padding: 20px 0; */
+    width: 100%;
+    padding: 12px 20px;
+    height: 100%;
+}
+.count {
+    position: absolute;
+    right: -15px;
+    top: -6px;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 4px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    background: #f53737;
+    color: #fff;
+}

@@ -1,0 +1,68 @@
+.wrapper {
+    padding: 80px 0px;
+    margin-top: 100px;
+    background: #ffffff
+        url('//cdn.shopify.com/s/files/1/0265/2146/8985/files/footer_3_58832c17-5ca3-42bd-b1b3-7bc14a594453.jpg?v=1652608382')
+        no-repeat scroll center center / cover;
+}
+.content {
+    display: flex;
+}
+.logo {
+    padding-bottom: 20px;
+    cursor: pointer;
+    max-width: 150px;
+}
+.desc {
+    font-size: 1.4rem;
+}
+.about,
+.contact,
+.follow {
+    color: #000;
+    font-size: 1.6rem;
+}
+.aboutContent {
+    font-size: 1.4rem;
+}
+.aboutTitle,
+.contactTitle,
+.followTitle {
+    padding-bottom: 20px;
+}
+.contactItem {
+    display: flex;
+}
+.contactIcon {
+    color: var(--primary);
+    font-size: 1.4rem;
+    padding-right: 10px;
+}
+.contactContent {
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+.followContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.followIcon {
+    cursor: pointer;
+    font-size: 2.6rem;
+}
+.facebook {
+    color: #1199f6;
+}
+.insta {
+    color: #d84178;
+}
+.youtube {
+    color: #ff0000;
+}
+.twitter {
+    color: #1d9bf0;
+}
+.linked {
+    color: #0077b7;
+}

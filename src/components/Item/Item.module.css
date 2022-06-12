@@ -1,0 +1,32 @@
+.wrapper {
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #f1f1f1;
+    padding: 0px 0px 25px;
+    text-align: center;
+    transition: all 0.4s linear;
+}
+.wrapper:hover {
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px;
+}
+.imgPro {
+    position: relative;
+}
+.imgChange {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 1;
+    transition: all 0.3s linear;
+}
+.wrapper:hover .imgChange {
+    opacity: 0;
+}
+.decs {
+}
+.name {
+    padding: 10px 0;
+}
+.price {
+    color: var(--primary);
+}

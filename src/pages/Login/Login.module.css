@@ -1,0 +1,55 @@
+.wrapper {
+    background: #fff
+        url(https://img.freepik.com/free-photo/stylish-white-fashion-sneakers-pink-background_118454-19757.jpg?w=1380)
+        no-repeat scroll center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+}
+
+.formContainer {
+    border-radius: 20px;
+    background: none 0px 0px repeat scroll #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.loginText {
+    text-align: center;
+}
+.loginIcon {
+    color: var(--primary);
+    font-size: 4rem;
+}
+.loginDesc {
+    font-size: 1.5rem;
+}
+
+.loginForm {
+    margin: 30px 0;
+}
+.email,
+.password {
+    border: 1px solid var(--color-hover);
+    padding: 16px 26px;
+    margin: 15px 0;
+    width: 100%;
+    font-size: 1.6rem;
+    border-radius: 10px;
+}
+
+.submit {
+    color: var(--white);
+    background-color: var(--primary);
+    padding: 10px 25px;
+    border-radius: 4px;
+    border: transparent;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: rgb(206, 28, 69);
+}

@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import Footer from '../Footer'
 import Header from '../Header'
 import styles from './LayoutSideBar.module.css'
 import SideBar from './SideBar'
@@ -12,6 +13,7 @@ function LayoutSideBar({ children }) {
                 <SideBar />
                 <div className={cx('content')}>{children}</div>
             </div>
+            <Footer />
         </div>
     )
 }

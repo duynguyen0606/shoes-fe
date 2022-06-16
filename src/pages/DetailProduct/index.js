@@ -1,7 +1,5 @@
 function DetailProduct() {
-    return (  
-        <h2>DetailProduct</h2>
-    );
+    return <h2>DetailProduct</h2>
 }
 
-export default DetailProduct;
+export default DetailProduct

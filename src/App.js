@@ -9,9 +9,6 @@ function App() {
                     {router.map((route, index) => {
                         const Page = route.component
                         let Layout = DefaultLayout
-                        if (route.layout) {
-                            Layout = route.layout
-                        }
                         return (
                             <Route
                                 key={index}

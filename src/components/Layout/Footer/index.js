@@ -29,7 +29,7 @@ function Footer() {
                         <div className={cx('logo')}>
                             <Link to="/">
                                 <img
-                                    src="https://cdn.shopify.com/s/files/1/0265/2146/8985/files/logo2_150x.png?v=1652677494"
+                                    src="anh1.png"
                                     alt="Logo"
                                 />
                             </Link>

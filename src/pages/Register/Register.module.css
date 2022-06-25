@@ -3,51 +3,54 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 100px 0;
+    padding: 80px 0;
 
 }
 
 .formContainer {
-    border-radius: 20px;
+    border-radius: 10px;
     background: none 0px 0px repeat scroll #fff;
 
 
     padding: 40px;
 }
 
-.loginText {
+a {
+    color: dodgerblue;
+}
+
+.registerText {
     text-align: center;
 }
 
-.loginIcon {
+.registerIcon {
     color: var(--primary);
     font-size: 4rem;
 }
 
-.loginDesc {
-    font-size: 1.5rem;
+
+.registerForm {
+    margin: 10px 50;
 }
 
-.loginForm {
-    margin: 30px 0;
-}
-
+.name,
 .email,
 .password {
     border: 1px solid var(--color-hover);
-    padding: 16px 26px;
+    padding: 10px 5px;
     margin: 15px 0;
     width: 100%;
     font-size: 1.6rem;
     border-radius: 10px;
 }
 
+
+
 .submit {
 
     color: var(--white);
     background-color: var(--primary);
     padding: 10px 25px;
-    text-align: center;
     border-radius: 4px;
     border: transparent;
     font-size: 1.6rem;
@@ -57,9 +60,4 @@
 
 .submit:hover {
     background-color: rgb(206, 28, 69);
-}
-
-a {
-    color: rgb(75, 255, 3);
-
 }

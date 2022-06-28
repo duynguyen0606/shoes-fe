@@ -1,5 +1,3 @@
-
-
 .changePage {
     display: flex;
     justify-content: center;
@@ -32,9 +30,6 @@
 .pageProNext {
     margin-right: 5px;
 }
-.preBtn {
-}
-.pagePro {
-}
-.nextBtn {
+.item {
+    margin-bottom: 20px;
 }

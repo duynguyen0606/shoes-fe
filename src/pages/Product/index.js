@@ -4,7 +4,7 @@ import classNames from 'classnames/bind'
 import Navbar from '../../components/Navbar'
 import styles from './Product.module.css'
 import Item from '../../components/Item/'
-
+import { Link } from 'react-router-dom'
 const cx = classNames.bind(styles)
 function Product() {
     return (
@@ -13,19 +13,29 @@ function Product() {
             <div className="grid wide">
                 <div className={cx('content', 'row')}>
                     <div className={cx('item', 'c-3', 'col')}>
-                        <Item />
+                        <Link to="/detail">
+                            <Item />
+                        </Link>
                     </div>
                     <div className={cx('item', 'c-3', 'col')}>
-                        <Item />
+                        <Link to="/detail">
+                            <Item />
+                        </Link>
                     </div>
                     <div className={cx('item', 'c-3', 'col')}>
-                        <Item />
+                        <Link to="/detail">
+                            <Item />
+                        </Link>
                     </div>
                     <div className={cx('item', 'c-3', 'col')}>
-                        <Item />
+                        <Link to="/detail">
+                            <Item />
+                        </Link>
                     </div>
                     <div className={cx('item', 'c-3', 'col')}>
-                        <Item />
+                        <Link to="/detail">
+                            <Item />
+                        </Link>
                     </div>
                 </div>
                 <div className={cx('changePage')}>

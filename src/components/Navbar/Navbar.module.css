@@ -8,3 +8,14 @@
 .content {
     display: flex;
 }
+.home a {
+    font-size: 1.4rem;
+    color: var(--black);
+    transition: color 0.2s ease;
+}
+.home a:hover {
+    color: var(--color-hover);
+}
+.path {
+    margin: 0 10px;
+}

@@ -2,7 +2,13 @@ import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass, faXmark, faCartShopping, faMoneyCheck } from '@fortawesome/free-solid-svg-icons'
+import {
+    faMagnifyingGlass,
+    faXmark,
+    faCartShopping,
+    faMoneyCheck,
+    faArrowRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons'
 import { faUserCircle, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { useEffect, useState } from 'react'
 
@@ -92,6 +98,9 @@ function Header() {
                                         >
                                             <FontAwesomeIcon icon={faCartShopping} />
                                             <div className={cx('count')}>1</div>
+                                        </div>
+                                        <div className={cx('loggout')}>
+                                            <FontAwesomeIcon icon={faArrowRightFromBracket} />
                                         </div>
                                     </>
                                 ) : (

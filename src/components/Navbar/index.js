@@ -15,7 +15,7 @@ function Navbar({ name }) {
                             <FontAwesomeIcon icon={faHouseChimney} />
                         </Link>
                     </div>
-                    <div>/</div>
+                    <div className={cx('path')}>/</div>
                     <div className={cx('subPath')}>
                         <Link to={`/${name}`}>{name}</Link>
                     </div>

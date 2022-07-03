@@ -11,12 +11,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faUserCircle, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const cx = classNames.bind(styles)
 function Header() {
     const [isFixed, setIsFixed] = useState(false)
-    const [isLogin, setIsLogin] = useState(true)
     const [isOCCart, setIsOCCart] = useState(false)
+    const userInfor = useSelector(state => state.user)
     const handleScroll = (event) => {
         if (event.wheelDelta < 0 || window.scrollY === 0) {
             setIsFixed(false)
@@ -85,7 +86,7 @@ function Header() {
                                         </div>
                                     </form>
                                 </div>
-                                {isLogin ? (
+                                {userInfor.isLogin ? (
                                     <>
                                         <div className={cx('user')}>
                                             <Link to="/user">

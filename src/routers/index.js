@@ -9,7 +9,7 @@ const router = [
     { path: '/product', component: Product },
     { path: '/login', component: Login },
     { path: '/user', component: User },
-    { path: '/detail', component: DetailProduct },
+    { path: '/detail/:id', component: DetailProduct },
     { path: '/cart', component: Cart },
 ]
 

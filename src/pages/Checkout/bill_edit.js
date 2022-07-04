@@ -1,34 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+import React from "react"
+
+function Bill_edit(){
+return(
+
+    <div>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Bill</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
 
-    <link rel="stylesheet" href="./assets/stylesheets/GlobalStyles.css">
-    <link rel="stylesheet" href="./assets/stylesheets/sitebar.css">
-    <link rel="stylesheet" href="./assets/stylesheets/base.css">
-    <link rel="stylesheet" href="./assets/stylesheets/private/bill.css">
-</head>
+    <link rel="stylesheet" href="./assets/stylesheets/GlobalStyles.css"/>
+    <link rel="stylesheet" href="./assets/stylesheets/sitebar.css"/>
+    <link rel="stylesheet" href="./assets/stylesheets/base.css"/>
+    <link rel="stylesheet" href="./assets/stylesheets/private/bill.css"/>
 
-<body>
+
+
     <header class="header"></header>
 
     <div class="grid wide ">
         <div class="row mt-16">
             <div class="col l-3 m-3 c-3">
-                <!-- Sidebar -->
+               
                 <div class="sitebar d-none d-lg-block">
                     <div class="sitebar-wrapper">
 
@@ -93,7 +96,7 @@
                                 </li>
                                 <li class="sitebar-item sitebar-item--suppliers">
                                     <a href="#">
-                                        <i class="fa-solid fa-truck"></i></i> Nhà cung cấp
+                                        <i class="fa-solid fa-truck"></i> Nhà cung cấp
                                     </a>
                                 </li>
                             </ul>
@@ -139,7 +142,7 @@
                 </div>
             </div>
 
-            <!-- 8 Cột còn lại chứa content -->
+           
             <div class="col l-8 m-8 c-8 mt-32">
                 <div class="bill-edit">
                     <div class="title">
@@ -153,11 +156,11 @@
                                 <form>
                                     <div class="input-group bill-edit__input-group align-items-center mb-2">
                                         <label for="" class="mb-0 mr-2">Mã khách hàng: </label>
-                                        <input type="number" class="form-control bordered" placeholder="Nhập mã khách hàng">
+                                        <input type="number" class="form-control bordered" placeholder="Nhập mã khách hàng"/>
                                     </div>
                                     <div class="input-group bill-edit__input-group align-items-center mb-2">
                                         <label for="" class="mb-0 mr-2">Ngày tạo: </label>
-                                        <input type="date" class="form-control bordered" placeholder="Nhập ngày tạo">
+                                        <input type="date" class="form-control bordered" placeholder="Nhập ngày tạo"/>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <button type="reset" class="btn btn-lg btn-outline-primary mr-2">Ghi lại</button>
@@ -300,9 +303,7 @@
             </div>
         </div>
     </div>
-
-    <footer class="footer "></footer>
-
-</body>
-
-</html>
+</div>
+)
+}
+export default Bill_edit

@@ -1,57 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer</title>
+import React from "react"
+import styles from '../Admin/stylesheets/sitebar.css'
+function Admin(){
+return(
+   <div> 
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <title>Admin Management</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="/assets/stylesheets/GlobalStyles.css">
-    <link rel="stylesheet" href="/assets/stylesheets/sitebar.css">
-    <link rel="stylesheet" href="/assets/stylesheets/base.css">
-    <link rel="stylesheet" href="/assets/stylesheets/admin-management.css">
-    <link rel="stylesheet" href="/assets/stylesheets/private/member.css">
-</head>
+    <link rel="stylesheet" href="stylesheets/GlobalStyles.css"/>
+    <link rel="stylesheet" href="stylesheets/sitebar.css"/>
+    <link rel="stylesheet" href="stylesheets/admin-management.css"/>
+    
 
-<body>
-    <header class="header"></header>
 
     <div class="grid wide ">
         <div class="row mt-16">
             <div class="col l-3 m-3 c-3">
+        
                 <div class="sitebar d-none d-lg-block">
-                    <div class="sitebar-wrapper">
+                    <div class  styles="sitebar-wrapper">
 
-                        <div class="sitebar-menu">
-                            <p class="sitebar-title">
+                        <div class styles="sitebar-menu">
+                            <p class styles="sitebar-title">
                                 Dashboard
                             </p>
-                            <ul class="sitebar-list">
-                                <li class="sitebar-item sitebar-item--home">
+                            <ul class ="sitebar-list">
+                                <li class="sitebar-item sitebar-item--admin">
                                     <a href="/admin-management.html">
                                         <i class="fa-solid fa-house-chimney"></i> Trang chủ
                                     </a>
                                 </li>
-                                <li class="sitebar-item sitebar-item--revenue">
+                                <li class="sitebar-item sitebar-item--revenue active">
                                     <a href="/revenue.html">
                                         <i class="fa-solid fa-chart-line"></i> Doanh thu
                                     </a>
                                 </li>
                             </ul>
                         </div>
+
 
                         <div class="sitebar-menu">
                             <p class="sitebar-title">
@@ -63,7 +70,7 @@
                                         <i class="fa-solid fa-user-large"></i> Nhân viên
                                     </a>
                                 </li>
-                                <li class="sitebar-item sitebar-item--members active">
+                                <li class="sitebar-item sitebar-item--members">
                                     <a href="/customer/index.html">
                                         <i class="fa-solid fa-user-group"></i> Khách hàng
                                     </a>
@@ -95,7 +102,7 @@
                                 </li>
                                 <li class="sitebar-item sitebar-item--suppliers">
                                     <a href="#">
-                                        <i class="fa-solid fa-truck"></i></i> Nhà cung cấp
+                                        <i class="fa-solid fa-truck"></i>  Nhà cung cấp
                                     </a>
                                 </li>
                             </ul>
@@ -141,83 +148,72 @@
                 </div>
             </div>
 
-            <!-- 8 Cột còn lại chứa content -->
+            
             <div class="col l-8 m-8 c-8 mt-32">
-
-                <div class="member-edit">
+                <div class="home">
+                  
                     <div class="title">
-                        Chỉnh sửa khách hàng
+                        Thông tin tài khoản
                         <span></span>
                     </div>
-                    <a href="/customer/index.html" class="text-danger d-inline-block pt-2">Trở lại</a>
-                    <div class="row pt-3">
-                        <div class="col-12 col-lg-8 offset-lg-2">
-                            <form id="create-form" class="needs-validation" novalidate method="POST">
-                                <div class="form-row">
-                    
-                                    <div class="col-12 mb-2">
-                                        <label class="mb-1" for="name">Họ và tên:</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên"
-                                            required value="Triệu Quân Sự">
-                                        <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
-                                    </div>
-                            
-                                    <div class="col-md-6 mb-2">
-                                        <label class="mb-1" for="phone">Số điện thoại:</label>
-                                        <input type="number" class="form-control" id="phone" name="phone"
-                                            placeholder="Nhập số điện thoại" required value="0344889999">
-                                        <div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
-                                    </div>
-                              
-                                    <div class="col-md-6 mb-2">
-                                        <label class="mb-1" for="branch">Chi nhánh:</label>
-                                        
-                                        <select id="branch" class="custom-select" name="branch" required>
-                                            <option value="">--Chọn chi nhánh--</option>
-                                            <option value="CN001" selected>Hồ Chí Minh</option>
-                                            <option value="CN002">Đà Nẵng</option>
-                                            <option value="CN003">Hà Nội</option>
-                                        </select>
-                                        <div class="invalid-feedback">Vui lòng chọn chi nhánh!</div> 
+                    <div class="home-info">
+                        <div class="row">
+                            <div class="col-12 col-lg-3 d-flex justify-content-center">
+                                <img src="./unknown.jpg" alt="Avatar"/>
+                            </div>
+                            <div class="col-12 col-lg-9 p-0">
+                                <div class="home-info__group d-flex justify-content-center">
+                                    <div class="row w-100">
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Mã nhân viên:</strong></p>
+                                            <input type="text" value="NV005533" disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Tên nhân viên:</strong></p>
+                                            <input type="text" value="Nguyễn Văn Đạt" disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Chức vụ:</strong></p>
+                                            <input type="text" value="Quản lý cửa hàng" disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Số điện thoại:</strong></p>
+                                            <input type="text" value="01234567890" disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Ngày sinh:</strong></p>
+                                            <input type="text" value="06/09/1969" disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Giới tính:</strong></p>
+                                            <input type="text" value="Nam" disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Email:</strong></p>
+                                            <input type="text" value="admin@gmail.com" disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3">
+                                            <p><strong>Chi nhánh:</strong></p>
+                                            <input type="text" value="Hà Nội"  disabled readonly/>
+                                        </div>
+                                        <div class="col-12 col-md-4 px-1 pb-3 ">
+                                            <p><strong>Lương:</strong></p>
+                                            <input type="text " value="50.000.000đ " disabled readonly/>
+                                        </div>
+                                        <div class="col-12 px-1 pb-3 ">
+                                            <p><strong>Địa chỉ:</strong></p>
+                                            <input type="text " value="Quận Ba Đình, Hà Nội " disabled readonly/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between mt-2">
-                                    <button type="button" class="btn btn-lg btn-outline-info mr-2">Reset mật khẩu</button>
-                                    <div>
-                                        <button type="reset" class="btn btn-lg btn-outline-primary mr-2">Nhập lại</button>
-                                        <button type="submit" class="btn btn-lg btn-outline-success">Lưu</button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-
             </div>
         </div>
     </div>
-
-    <footer class="footer "></footer>
-
-    
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                const form = document.getElementById('create-form')
-
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            }, false);
-        })();
-    </script>
-</body>
-
-</html>
+</div>
+)
+}
+export default Admin;

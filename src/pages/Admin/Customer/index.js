@@ -1,30 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
+import React from "react"
+
+function Customer(){
+return(
+
+
+    
+   <div>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Customer</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./assets/stylesheets/GlobalStyles.css">
-    <link rel="stylesheet" href="./assets/stylesheets/sitebar.css">
-    <link rel="stylesheet" href="./assets/stylesheets/base.css">
-    <link rel="stylesheet" href="./assets/stylesheets/admin-management.css">
-    <link rel="stylesheet" href="./assets/stylesheets/private/product.css">
-</head>
+    <link rel="stylesheet" href="./assets/stylesheets/GlobalStyles.css"/>
+    <link rel="stylesheet" href="./assets/stylesheets/sitebar.css"/>
+    <link rel="stylesheet" href="./assets/stylesheets/base.css"/>
+    <link rel="stylesheet" href="./assets/stylesheets/admin-management.css"/>
+    <link rel="stylesheet" href="./assets/stylesheets/private/member.css"/>
 
-<body>
+
+
     <header class="header"></header>
 
     <div class="grid wide ">
@@ -61,12 +68,12 @@
                                         <i class="fa-solid fa-user-large"></i> Nhân viên
                                     </a>
                                 </li>
-                                <li class="sitebar-item sitebar-item--members">
+                                <li class="sitebar-item sitebar-item--members active">
                                     <a href="/customer/index.html">
                                         <i class="fa-solid fa-user-group"></i> Khách hàng
                                     </a>
                                 </li>
-                                <li class="sitebar-item sitebar-item--products active">
+                                <li class="sitebar-item sitebar-item--products">
                                     <a href="/product/index.html">
                                         <i class="fa-solid fa-shoe-prints"></i> Sản phẩm
                                     </a>
@@ -139,19 +146,16 @@
                 </div>
             </div>
 
-            <!-- 8 Cột còn lại chứa content -->
+   
             <div class="col l-8 m-8 c-8 mt-32">
-                
-                <div class="product">
+
+                <div class="staff">
                     <div class="title">
-                        Sản phẩm
+                        Khách hàng
                         <span></span>
                     </div>
                     <div class="heading d-flex flex-column flex-md-row justify-content-md-between">
-                        <div class="search d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
-                            <a href="/product/create-group.html" type="button" class="btn btn-lg btn-outline-success">Thêm nhóm sản phẩm</a>
-                            <a href="/product/create.html" type="button" class="btn btn-lg btn-outline-success ml-md-3 mt-2 mt-md-0">Thêm sản phẩm</a>
-                        </div>
+                        <a href="/customer/create.html" type="button" class="btn btn-lg btn-outline-success">Thêm khách hàng</a>
                         <div class="search d-flex pt-2 pt-md-0 flex-column flex-md-row align-items-md-center">
                             <label for="search-input">Tìm kiếm: </label>
                             <div class="search-wrapper">
@@ -165,104 +169,147 @@
                             <table class="table table-bordered table-hover table-light table">
                                 <thead>
                                     <tr class="text-white" style="background-color: var(--primary);">
-                                        <th style="min-width: 40px; width: 10%" class="text-center">ID</th>
-                                        <th style="min-width: 200px; width: 30%" class="text-center">Tên nhóm sản phẩm</th>
-                                        <th style="min-width: 140px; width: 15%" class="text-center">Số lượng Sản phẩm</th>
-                                        <th style="min-width: 230px; width: 30%" class="text-center">Hành động</th>
+                                        <th style="min-width: 80px; width: 20%" class="text-center">ID</th>
+                                        <th style="min-width: 220px; width: 35%" class="text-center">Họ và tên</th>
+                                        <th style="min-width: 140px; width: 20%" class="text-center">Chi nhánh</th>
+                                        <th style="min-width: 180px; width: 20%" class="text-center">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="text-center align-middle">
-                                            <a href="/product/detail-group.html" class="text-dark">NSP0001</a>
+                                            <a href="/customer/detail.html" class="text-dark">0344889999</a>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <a href="#" class="text-dark">Nike</a>
+                                            Triệu Quân Sự
                                         </td>
-                                        <td class="text-center align-middle">9</td>
+                                        <td class="text-center align-middle">Hồ Chí Minh</td>
                                         <td class="text-center align-middle">
-                                            <a href="/product/edit-group.html" type="button" class="btn btn-lg btn-outline-primary" data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
-                                                <i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa
+                                            <a href="/customer/edit.html" type="button"
+                                                class="btn btn-lg  btn-outline-primary" data-tooltip="tooltip"
+                                                data-placement="top" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Xóa" data-toggle="modal" data-id="NMA0001" data-img="" data-name="" data-target="#delete-modal">
+                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip"
+                                                data-placement="top" title="Xóa" data-toggle="modal"
+                                                data-id="0344889999" data-img="" data-name="Triệu Quân Sự"
+                                                data-target="#delete-modal">
                                                 <i class="fa-solid fa-trash-can"></i>
-                                                Xóa
                                             </button>
                                         </td>
                                     </tr>
-                                
+                                    
                                     <tr>
                                         <td class="text-center align-middle">
-                                            <a href="/product/detail-group.html" class="text-dark">NSP0002</a>
+                                            <a href="/customer/detail.html" class="text-dark">0344889999</a>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <a href="#" class="text-dark">Puma</a>
+                                            Triệu Quân Sự
                                         </td>
-                                        <td class="text-center align-middle">3</td>
+                                        <td class="text-center align-middle">Hồ Chí Minh</td>
                                         <td class="text-center align-middle">
-                                            <a href="/product/edit-group.html" type="button" class="btn btn-lg btn-outline-primary" data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
-                                                <i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa
+                                            <a href="/customer/edit.html" type="button"
+                                                class="btn btn-lg  btn-outline-primary" data-tooltip="tooltip"
+                                                data-placement="top" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Xóa" data-toggle="modal" data-id="NMA0001" data-img="" data-name="" data-target="#delete-modal">
+                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip"
+                                                data-placement="top" title="Xóa" data-toggle="modal"
+                                                data-id="0344889999" data-img="" data-name="Triệu Quân Sự"
+                                                data-target="#delete-modal">
                                                 <i class="fa-solid fa-trash-can"></i>
-                                                Xóa
-                                            </button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-center align-middle">
-                                            <a href="/product/detail-group.html" class="text-dark">NSP0003</a>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            <a href="#" class="text-dark">Converse</a>
-                                        </td>
-                                        <td class="text-center align-middle">16</td>
-                                        <td class="text-center align-middle">
-                                            <a href="/product/edit-group.html" type="button" class="btn btn-lg btn-outline-primary" data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
-                                                <i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa
-                                            </a>
-                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Xóa" data-toggle="modal" data-id="NMA0001" data-img="" data-name="" data-target="#delete-modal">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                                Xóa
                                             </button>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-center align-middle">
-                                            <a href="/product/detail-group.html" class="text-dark">NSP0004</a>
+                                            <a href="/customer/detail.html" class="text-dark">0344889999</a>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <a href="#" class="text-dark">Adidas</a>
+                                            Triệu Quân Sự
                                         </td>
-                                        <td class="text-center align-middle">5</td>
+                                        <td class="text-center align-middle">Hồ Chí Minh</td>
                                         <td class="text-center align-middle">
-                                            <a href="/product/edit-group.html" type="button" class="btn btn-lg btn-outline-primary" data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
-                                                <i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa
+                                            <a href="/customer/edit.html" type="button"
+                                                class="btn btn-lg  btn-outline-primary" data-tooltip="tooltip"
+                                                data-placement="top" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Xóa" data-toggle="modal" data-id="NMA0001" data-img="" data-name="" data-target="#delete-modal">
+                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip"
+                                                data-placement="top" title="Xóa" data-toggle="modal"
+                                                data-id="0344889999" data-img="" data-name="Triệu Quân Sự"
+                                                data-target="#delete-modal">
                                                 <i class="fa-solid fa-trash-can"></i>
-                                                Xóa
                                             </button>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-center align-middle">
-                                            <a href="/product/detail-group.html" class="text-dark">NSP0005</a>
+                                            <a href="/customer/detail.html" class="text-dark">0344889999</a>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <a href="#" class="text-dark">Vans</a>
+                                            Triệu Quân Sự
                                         </td>
-                                        <td class="text-center align-middle">3</td>
+                                        <td class="text-center align-middle">Hồ Chí Minh</td>
                                         <td class="text-center align-middle">
-                                            <a href="/product/edit-group.html" type="button" class="btn btn-lg btn-outline-primary" data-tooltip="tooltip" data-placement="top" title="Chỉnh sửa">
-                                                <i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa
+                                            <a href="/customer/edit.html" type="button"
+                                                class="btn btn-lg  btn-outline-primary" data-tooltip="tooltip"
+                                                data-placement="top" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Xóa" data-toggle="modal" data-id="NMA0001" data-img="" data-name="" data-target="#delete-modal">
+                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip"
+                                                data-placement="top" title="Xóa" data-toggle="modal"
+                                                data-id="0344889999" data-img="" data-name="Triệu Quân Sự"
+                                                data-target="#delete-modal">
                                                 <i class="fa-solid fa-trash-can"></i>
-                                                Xóa
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center align-middle">
+                                            <a href="/customer/detail.html" class="text-dark">0344889999</a>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            Triệu Quân Sự
+                                        </td>
+                                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                                        <td class="text-center align-middle">
+                                            <a href="/customer/edit.html" type="button"
+                                                class="btn btn-lg  btn-outline-primary" data-tooltip="tooltip"
+                                                data-placement="top" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip"
+                                                data-placement="top" title="Xóa" data-toggle="modal"
+                                                data-id="0344889999" data-img="" data-name="Triệu Quân Sự"
+                                                data-target="#delete-modal">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center align-middle">
+                                            <a href="/customer/detail.html" class="text-dark">0344889999</a>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            Triệu Quân Sự
+                                        </td>
+                                        <td class="text-center align-middle">Hồ Chí Minh</td>
+                                        <td class="text-center align-middle">
+                                            <a href="/customer/edit.html" type="button"
+                                                class="btn btn-lg  btn-outline-primary" data-tooltip="tooltip"
+                                                data-placement="top" title="Chỉnh sửa">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-lg btn-outline-danger" data-tooltip="tooltip"
+                                                data-placement="top" title="Xóa" data-toggle="modal"
+                                                data-id="0344889999" data-img="" data-name="Triệu Quân Sự"
+                                                data-target="#delete-modal">
+                                                <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -270,22 +317,23 @@
                             </table>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-danger">Xem thêm</button>
+                            <button type="button" class="btn btn-lg btn-danger">Xem thêm</button>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>
+  
 
     <footer class="footer "></footer>
+
 
     <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Xóa nhóm sản phẩm?</h5>
+                    <h5 class="modal-title">Xóa khách hàng?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -300,38 +348,35 @@
             </div>
         </div>
     </div>
-    
-    
+
     <form id="delete-form" name="delete-form" method="POST"></form>
-    
+
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const deleteForm = document.getElementById('delete-form')
-            const btnDeleteCourse = document.getElementById('btn-confirm-delete')
+            const btnDelete = document.getElementById('btn-confirm-delete')
             const modalMessage = document.querySelector('.modal-body__message')
             let id;
-    
+
             // Tooltip
             $('[data-tooltip="tooltip"]').tooltip();
-    
+
             // When single button delete clicked in each course
-            $('#delete-modal').on('show.bs.modal', function(event) {
+            $('#delete-modal').on('show.bs.modal', function (event) {
                 let button = $(event.relatedTarget)
                 id = button.data('id')
-                modalMessage.innerHTML = `Bạn có thật sự muốn xóa nhóm Sản phẩm: <strong>${id}</strong> không?`
+                modalMessage.innerHTML = `Bạn có thật sự muốn xóa khách hàng: ${id} không?`
             })
-    
+
             // When button delete clicked
-            btnDeleteCourse.onclick = function() {
+            btnDelete.onclick = function () {
                 deleteForm.action = ``
                 deleteForm.submit()
             }
         });
     </script>
-</body>
+ </div>
+)
+}
 
-</html>
-
-
-
-
+export default Customer

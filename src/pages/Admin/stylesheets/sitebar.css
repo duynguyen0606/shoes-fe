@@ -27,7 +27,7 @@
     text-decoration: none;
 }
 
-.sitebar-wrapper.active--home .sitebar-item--home a,
+.sitebar-wrapper.active--admin .sitebar-item--home a,
 .sitebar-wrapper.active--revenue .sitebar-item--revenue a,
 .sitebar-wrapper.active--staffs .sitebar-item--staffs a,
 .sitebar-wrapper.active--members .sitebar-item--members a,

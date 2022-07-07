@@ -1,6 +1,7 @@
 import { faTruckFast, faLifeRing, faArrowRotateLeft, faMoneyCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames/bind'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Item from '../../components/Item'
 import styles from './Home.module.css'
@@ -29,6 +30,7 @@ const endow = [
     },
 ]
 function Home() {
+    const products = useSelector((state) => state.products.products);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('slideWrapper')}>
@@ -85,16 +87,16 @@ function Home() {
                     </div>
                     <div className={cx('productList')}>
                         <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item />
+                            <Item product={products[0]}/>
                         </div>
                         <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item />
+                            <Item product={products[1]}/>
                         </div>
                         <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item />
+                            <Item product={products[2]}/>
                         </div>
                         <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item />
+                            <Item product={products[3]}/>
                         </div>
                     </div>
                 </div>

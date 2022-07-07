@@ -2,15 +2,22 @@ import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass, faXmark, faCartShopping, faMoneyCheck } from '@fortawesome/free-solid-svg-icons'
+import {
+    faMagnifyingGlass,
+    faXmark,
+    faCartShopping,
+    faMoneyCheck,
+    faArrowRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons'
 import { faUserCircle, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const cx = classNames.bind(styles)
 function Header() {
     const [isFixed, setIsFixed] = useState(false)
-    const [isLogin, setIsLogin] = useState(true)
     const [isOCCart, setIsOCCart] = useState(false)
+    const userInfor = useSelector(state => state.user)
     const handleScroll = (event) => {
         if (event.wheelDelta < 0 || window.scrollY === 0) {
             setIsFixed(false)
@@ -79,7 +86,7 @@ function Header() {
                                         </div>
                                     </form>
                                 </div>
-                                {isLogin ? (
+                                {userInfor.isLogin ? (
                                     <>
                                         <div className={cx('user')}>
                                             <Link to="/user">
@@ -92,6 +99,9 @@ function Header() {
                                         >
                                             <FontAwesomeIcon icon={faCartShopping} />
                                             <div className={cx('count')}>1</div>
+                                        </div>
+                                        <div className={cx('loggout')}>
+                                            <FontAwesomeIcon icon={faArrowRightFromBracket} />
                                         </div>
                                     </>
                                 ) : (

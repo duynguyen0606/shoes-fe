@@ -6,7 +6,6 @@ import styles from './Item.module.css'
 const cx = classNames.bind(styles)
 
 function Item({product}) {
-    console.log(product)
     return (
         <div className={cx('wrapper')}>
             <Link to={`/detail/${product._id}`}>

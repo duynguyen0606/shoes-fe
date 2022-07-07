@@ -15,10 +15,9 @@ function Register() {
                             <div className={cx('registerIcon')}>
                                 <FontAwesomeIcon icon={faLock} />
                             </div>
-                            
                         </div>
                         <div className={cx('registerForm')}>
-                        <label
+                            <label
                                 htmlFor="Name"
                                 className={cx('placeHolder')}
                             >
@@ -65,7 +64,10 @@ function Register() {
                                 type="password"
                             />
                         </div>
-                        <div> By creating an account you agree to our <a href='#'>Terms & Privacy</a>.</div>
+                        <div>
+                            {' '}
+                            By creating an account you agree to our <a href="#">Terms & Privacy</a>.
+                        </div>
 
                         <div className={cx('actionSubmit')}>
                             <button className={cx('submit')}>Submit</button>

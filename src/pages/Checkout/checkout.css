@@ -1,0 +1,61 @@
+.bill-create__input-group label,
+.bill-edit__input-group label {
+    width: 100px;
+}
+
+.bill-create__input-group input {
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+}
+
+.bill-edit__input-group input {
+    border-radius: 8px !important;
+}
+
+.bill-create__right-heading h5,
+.bill-edit__right-heading h5,
+.bill-detail__heading {
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.bill-create__right-content>span,
+.bill-edit__right-content>span,
+.bill-detail__content>span {
+    display: block;
+    width: 100%;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    margin: 8px 0;
+}
+
+.bill-create__right-content,
+.bill-detail__content {
+    font-size: 16px;
+}
+
+.bill-create__right-content-detail>.table th,
+.bill-create__right-content-detail>.table td,
+.bill-edit__right-content-detail>.table th,
+.bill-edit__right-content-detail>.table td,
+.bill-detail__content .table th,
+.bill-detail__content .table td {
+    border: none;
+    padding: 4px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .bill-create__right-content-detail>.table th,
+    .bill-edit__right-content-detail>.table th,
+    .bill-detail__content .table th {
+        background-color: transparent;
+    }
+}
+
+.form-control {
+    font-size: 1.6rem !important;
+    padding: 4px 16px !important;
+}
+
+h6 {
+    font-size: 1.6rem;
+}

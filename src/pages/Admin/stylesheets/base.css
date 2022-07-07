@@ -1,0 +1,66 @@
+/* List View dùng chung cho giao diện danh sách */
+
+.title {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.title span {
+    display: block;
+    flex: 1;
+    height: 1px;
+    margin-left: 12px;
+    background-color: var(--primary);
+}
+
+.heading {
+    padding-top: 20px;
+}
+
+.search-wrapper {
+    margin-left: 4px;
+    display: flex;
+    min-width: 260px;
+    align-items: center;
+    padding: 2px 12px;
+    border: 2px solid var(--black);
+    border-radius: 24px;
+}
+
+.search label {
+    margin: 0;
+}
+
+.search-input {
+    border: 0;
+    outline: none;
+    flex: 1;
+}
+
+.search-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.table {
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    .table th:first-child,
+    td:first-child {
+        position: sticky;
+        left: 0px;
+    }
+    .table th:first-child {
+        background-color: var(--primary);
+    }
+    .table td:first-child {
+        background-color: var(--white);
+    }
+}

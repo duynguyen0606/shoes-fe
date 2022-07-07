@@ -1,0 +1,62 @@
+.sitebar-wrapper {
+    padding: 12px;
+    /* border: 1px solid black; */
+    border-radius: 12px;
+    box-shadow: 0px 0px 8px var(--primary);
+    /* background-color: rgba(0, 0, 0, 0.06); */
+}
+
+.sitebar-title {
+    margin: 0;
+    margin-bottom: 8px;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+}
+
+.sitebar-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sitebar-item a {
+    display: block;
+    padding: 4px 12px;
+    margin-bottom: 4px;
+    border-radius: 12px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.sitebar-wrapper.active--admin .sitebar-item--home a,
+.sitebar-wrapper.active--revenue .sitebar-item--revenue a,
+.sitebar-wrapper.active--staffs .sitebar-item--staffs a,
+.sitebar-wrapper.active--members .sitebar-item--members a,
+.sitebar-wrapper.active--products .sitebar-item--products a,
+.sitebar-wrapper.active--bills .sitebar-item--bills a,
+.sitebar-wrapper.active--schedules .sitebar-item--schedules a,
+.sitebar-wrapper.active--materials .sitebar-item--materials a,
+.sitebar-wrapper.active--received-notes .sitebar-item--received-notes a,
+.sitebar-wrapper.active--suppliers .sitebar-item--suppliers a,
+.sitebar-wrapper.active--tables-condition .sitebar-item--tables-condition a,
+.sitebar-wrapper.active--order .sitebar-item--order a,
+.sitebar-wrapper.active--password .sitebar-item--password a {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.sitebar-item a:hover {
+    background-color: #ff7d7d;
+    color: var(--white);
+}
+
+.sitebar-item.active>a {
+    color: var(--white);
+    background-color: #ff7d7d;
+}
+
+.sitebar-item>a>i {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="/assets/stylesheets/GlobalStyles.css">
+    <link rel="stylesheet" href="/assets/stylesheets/sitebar.css">
+    <link rel="stylesheet" href="/assets/stylesheets/base.css">
+    <link rel="stylesheet" href="/assets/stylesheets/admin-management.css">
+    <link rel="stylesheet" href="/assets/stylesheets/private/product.css">
+</head>
+
+<body>
+    <header class="header"></header>
+
+    <div class="grid wide ">
+        <div class="row mt-16">
+            <div class="col l-3 m-3 c-3">
+                <div class="sitebar d-none d-lg-block">
+                    <div class="sitebar-wrapper">
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Dashboard
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--home">
+                                    <a href="/admin-management.html">
+                                        <i class="fa-solid fa-house-chimney"></i> Trang chủ
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--revenue">
+                                    <a href="/revenue.html">
+                                        <i class="fa-solid fa-chart-line"></i> Doanh thu
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Quick Menu
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--staffs">
+                                    <a href="#">
+                                        <i class="fa-solid fa-user-large"></i> Nhân viên
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--members">
+                                    <a href="/customer/index.html">
+                                        <i class="fa-solid fa-user-group"></i> Khách hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--products active">
+                                    <a href="/product/index.html">
+                                        <i class="fa-solid fa-shoe-prints"></i> Sản phẩm
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--bills">
+                                    <a href="/bills/index.html">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i> Hóa đơn
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--schedules">
+                                    <a href="#">
+                                        <i class="fa-regular fa-calendar-days"></i> Giỏ hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--materials">
+                                    <a href="#">
+                                        <i class="fa-solid fa-cubes"></i> Tồn kho
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--received-notes">
+                                    <a href="#">
+                                        <i class="fa-solid fa-clipboard-list"></i> Phiếu nhập hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--suppliers">
+                                    <a href="#">
+                                        <i class="fa-solid fa-truck"></i></i> Nhà cung cấp
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Actions
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--tables-condition">
+                                    <a href="#">
+                                        <i class="fa-solid fa-table-cells"></i> Xem lịch đặt hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--order">
+                                    <a href="#">
+                                        <i class="fa-solid fa-pen-to-square"></i> Đặt hàng
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Other
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--password">
+                                    <a href="/change-password.html">
+                                        <i class="fa-solid fa-lock"></i> Đổi mật khẩu
+                                    </a>
+                                </li>
+                                <li class="sitebar-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8 Cột còn lại chứa content -->
+            <div class="col l-8 m-8 c-8 mt-32">
+                
+                <div class="product-group-create">
+                    <div class="title">
+                        Thêm nhóm sản phẩm
+                        <span></span>
+                    </div>
+                    <div class="product-group-create__content pt-2">
+                        <a href="/product/index.html" class="text-danger">Trở lại</a>
+                        <form class="needs-validation pt-4 px-md-5" novalidate method="POST">             
+                       
+                            <div class="d-flex flex-column">
+                                <label class="mb-1" for="name">Tên nhóm Sản phẩm:</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên nhóm Sản phẩm"
+                                    autocomplete="off"    required>
+                                <div class="invalid-feedback">Vui lòng nhập tên nhóm Sản phẩm!</div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end mt-3">
+                                <button type="reset" class="btn btn-lg btn-outline-secondary mr-2">Nhập lại</button>
+                                <button type="submit" class="btn btn-lg btn-outline-success">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer "></footer>
+
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+
+</html>
+
+
+
+
+

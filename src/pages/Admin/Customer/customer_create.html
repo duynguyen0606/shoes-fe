@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./assets/stylesheets/GlobalStyles.css">
+    <link rel="stylesheet" href="./assets/stylesheets/sitebar.css">
+    <link rel="stylesheet" href="./assets/stylesheets/base.css">
+    <link rel="stylesheet" href="./assets/stylesheets/admin-management.css">
+    <link rel="stylesheet" href="./assets/stylesheets/private/member.css">
+</head>
+
+<body>
+    <header class="header"></header>
+
+    <div class="grid wide ">
+        <div class="row mt-16">
+            <div class="col l-3 m-3 c-3">
+                <div class="sitebar d-none d-lg-block">
+                    <div class="sitebar-wrapper">
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Dashboard
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--home">
+                                    <a href="/admin-management.html">
+                                        <i class="fa-solid fa-house-chimney"></i> Trang chủ
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--revenue">
+                                    <a href="/revenue.html">
+                                        <i class="fa-solid fa-chart-line"></i> Doanh thu
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Quick Menu
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--staffs">
+                                    <a href="#">
+                                        <i class="fa-solid fa-user-large"></i> Nhân viên
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--members active">
+                                    <a href="/customer/index.html">
+                                        <i class="fa-solid fa-user-group"></i> Khách hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--products">
+                                    <a href="/product/index.html">
+                                        <i class="fa-solid fa-shoe-prints"></i> Sản phẩm
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--bills">
+                                    <a href="/bills/index.html">
+                                        <i class="fa-solid fa-file-invoice-dollar"></i> Hóa đơn
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--schedules">
+                                    <a href="#">
+                                        <i class="fa-regular fa-calendar-days"></i> Giỏ hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--materials">
+                                    <a href="#">
+                                        <i class="fa-solid fa-cubes"></i> Tồn kho
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--received-notes">
+                                    <a href="#">
+                                        <i class="fa-solid fa-clipboard-list"></i> Phiếu nhập hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--suppliers">
+                                    <a href="#">
+                                        <i class="fa-solid fa-truck"></i></i> Nhà cung cấp
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Actions
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--tables-condition">
+                                    <a href="#">
+                                        <i class="fa-solid fa-table-cells"></i> Xem lịch đặt hàng
+                                    </a>
+                                </li>
+                                <li class="sitebar-item sitebar-item--order">
+                                    <a href="#">
+                                        <i class="fa-solid fa-pen-to-square"></i> Đặt hàng
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sitebar-menu">
+                            <p class="sitebar-title">
+                                Other
+                            </p>
+                            <ul class="sitebar-list">
+                                <li class="sitebar-item sitebar-item--password">
+                                    <a href="/change-password.html">
+                                        <i class="fa-solid fa-lock"></i> Đổi mật khẩu
+                                    </a>
+                                </li>
+                                <li class="sitebar-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8 Cột còn lại chứa content -->
+            <div class="col l-8 m-8 c-8 mt-32">
+
+                <div class="member-create">
+                    <div class="title">
+                        Thêm khách hàng
+                        <span></span>
+                    </div>
+                    <a href="/customer/index.html" class="text-danger d-inline-block pt-2">Trở lại</a>
+                    <div class="container">
+                        <div class="row pt-3">
+                            <div class="col-12 col-lg-8 offset-lg-2">
+                                <form id="create-form" class="needs-validation" novalidate method="POST">
+                                    <div class="form-row">
+
+                                        <div class="col-12 mb-2">
+                                            <label class="mb-1" for="name">Họ và tên:</label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Nhập họ và tên" required>
+                                            <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-2">
+                                            <label class="mb-1" for="phone">Số điện thoại:</label>
+                                            <input type="number" class="form-control" id="phone" name="phone"
+                                                placeholder="Nhập số điện thoại" required>
+                                            <div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-2">
+                                            <label class="mb-1" for="branch">Chi nhánh:</label>
+                                            <select id="branch" class="custom-select" name="branch" required>
+                                                <option value="">--Chọn chi nhánh--</option>
+                                                <option value="CN001">Hồ Chí Minh</option>
+                                                <option value="CN002">Đà Nẵng</option>
+                                                <option value="CN003">Hà Nội</option>
+                                            </select>
+                                            <div class="invalid-feedback">Vui lòng chọn chi nhánh!</div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end mt-2">
+                                        <button type="reset" class="btn btn-lg btn-outline-primary mr-2"
+                                            id="reset-btn">Nhập lại</button>
+                                        <button type="submit" class="btn btn-lg btn-outline-success">Xác nhận</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer "></footer>
+
+
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                const form = document.getElementById('create-form')
+
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+</body>
+
+</html>

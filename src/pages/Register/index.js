@@ -1,23 +1,34 @@
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classnames from 'classnames/bind'
-import styles from './Login.module.css'
-import Register from '../Register'
+import styles from './Register.module.css'
+
 const cx = classnames.bind(styles)
 
-function Login() {
+function Register() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
                 <form>
                     <div className={cx('formContainer')}>
-                        <div className={cx('loginText')}>
-                            <div className={cx('loginIcon')}>
+                        <div className={cx('registerText')}>
+                            <div className={cx('registerIcon')}>
                                 <FontAwesomeIcon icon={faLock} />
                             </div>
-                            <div className={cx('loginDesc')}>Please login using account detail below</div>
+                            
                         </div>
-                        <div className={cx('loginForm')}>
+                        <div className={cx('registerForm')}>
+                        <label
+                                htmlFor="Name"
+                                className={cx('placeHolder')}
+                            >
+                                Name
+                            </label>
+                            <input
+                                id="name"
+                                className={cx('name')}
+                                type="name"
+                            />
                             <label
                                 htmlFor="email"
                                 className={cx('placeHolder')}
@@ -42,16 +53,23 @@ function Login() {
                                 className={cx('password')}
                                 type="password"
                             />
+                            <label
+                                htmlFor="password"
+                                className={cx('placeHolder')}
+                            >
+                                Repeat Password
+                            </label>
+                            <input
+                                id="password"
+                                className={cx('password')}
+                                type="password"
+                            />
                         </div>
-                        
+                        <div> By creating an account you agree to our <a href='#'>Terms & Privacy</a>.</div>
+
                         <div className={cx('actionSubmit')}>
-                            <button className={cx('submit')}>Sign In</button>
-                         
+                            <button className={cx('submit')}>Submit</button>
                         </div>
-                        <div>
-                            You don't have an account ? <a href="Register">Creat a T20 account</a>
-                        </div>
-                            
                     </div>
                 </form>
             </div>
@@ -59,4 +77,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Register

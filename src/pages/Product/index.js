@@ -35,7 +35,7 @@ function Product() {
             <Navbar name={'products'} />
             <div className="grid wide">
                 <div className={cx('content', 'row')}>
-                    {products.map((product) => {
+                    {products.slice(8 * (currentPage - 1), 8 * currentPage).map((product) => {
                         return (
                             <div
                                 className={cx('item', 'l-3', 'col', 'm-4', 'c-6')}

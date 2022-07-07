@@ -7,6 +7,7 @@ import User from '../pages/User'
 import Register from '../pages/Register'
 import DetailProduct from '../pages/DetailProduct'
 import Cart from '../pages/Cart'
+import ManageProduct from '../pages/ManageProduct'
 const router = [
     { path: '/', component: Home },
     { path: '/product', component: Product },
@@ -16,5 +17,7 @@ const router = [
     { path: '/detail/:id', component: DetailProduct },
     { path: '/cart', component: Cart },
 ]
-
+const routerAdmin = [
+    { path: '/', component: ManageProduct}
+]
 export { router }

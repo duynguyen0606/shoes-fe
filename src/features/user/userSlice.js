@@ -8,6 +8,7 @@ const initialState = {
         address: 'Ha Noi',
         phone: '0348513413',
         purchaseHistory: [],
+        role: 1
     },
 }
 const userSlice = createSlice({

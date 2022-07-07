@@ -107,7 +107,18 @@
     top: 20%;
     font-size: 1.8rem;
 }
-
+.search-result{
+    margin-top: 5px;
+    overflow: scrollY;
+    overflow-y: auto;   
+    max-height: 400px;
+    /* height: 400px; */
+    box-shadow: 3px 2px 4px #d7d7d7;
+    z-index: 2;
+    position: absolute;
+    background-color: #fff;
+    width: 400px;
+}
 .user {
     padding: 0 10px;
     margin: 0 10px;

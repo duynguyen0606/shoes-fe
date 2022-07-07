@@ -30,7 +30,7 @@ const endow = [
     },
 ]
 function Home() {
-    const products = useSelector((state) => state.products.products);
+    const products = useSelector((state) => state.products.products)
     return (
         <div className={cx('wrapper')}>
             <div className={cx('slideWrapper')}>
@@ -48,7 +48,7 @@ function Home() {
                     {endow.map((item, index) => (
                         <div
                             key={index}
-                            className={cx('endowItem')}
+                            className={cx('endowItem', 'col', 'l-3', 'c-6')}
                         >
                             <div className={cx('endowIcon')}>{item.icon}</div>
                             <div className={cx('endowContent')}>
@@ -86,17 +86,17 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx('productList')}>
-                        <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item product={products[0]}/>
+                        <div className={cx('productItem', 'col', 'm-4', 'l-3', 'c-6')}>
+                            <Item product={products[0]} />
                         </div>
-                        <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item product={products[1]}/>
+                        <div className={cx('productItem', 'col', 'm-4', 'l-3', 'c-6')}>
+                            <Item product={products[1]} />
                         </div>
-                        <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item product={products[2]}/>
+                        <div className={cx('productItem', 'col', 'm-4', 'l-3', 'c-0')}>
+                            <Item product={products[2]} />
                         </div>
-                        <div className={cx('productItem', 'c-3', 'col')}>
-                            <Item product={products[3]}/>
+                        <div className={cx('productItem', 'col', 'm-0', 'l-3', 'c-0')}>
+                            <Item product={products[3]} />
                         </div>
                     </div>
                 </div>

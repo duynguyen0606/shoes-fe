@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import styles from './Footer.module.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faLinkedinIn, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
@@ -25,11 +25,11 @@ function Footer() {
         <div className={cx('wrapper')}>
             <div className="grid wide">
                 <div className={cx('content', 'row')}>
-                    <div className={cx('logoDesc', 'c-3', 'col')}>
+                    <div className={cx('logoDesc', 'l-3', 'col', 'm-6', 'c-6')}>
                         <div className={cx('logo')}>
                             <Link to="/">
                                 <img
-                                    src="anh1.png"
+                                    src="logo.png"
                                     alt="Logo"
                                 />
                             </Link>
@@ -38,7 +38,7 @@ function Footer() {
                             Cửa hàng T20 cung cấp cho quý khách những mẫu giày chất lượng nhất.
                         </div>
                     </div>
-                    <div className={cx('about', 'c-3', 'col')}>
+                    <div className={cx('about', 'l-3', 'col', 'm-6', 'c-6')}>
                         <div className={cx('aboutTitle')}>Information</div>
                         <Link
                             to="/about"
@@ -47,7 +47,7 @@ function Footer() {
                             About Us
                         </Link>
                     </div>
-                    <div className={cx('contact', 'c-3', 'col')}>
+                    <div className={cx('contact', 'l-3', 'col', 'm-6', 'c-6')}>
                         <div className={cx('contactTitle')}>Contact Us</div>
                         {contact.map((item, index) => (
                             <div
@@ -59,7 +59,7 @@ function Footer() {
                             </div>
                         ))}
                     </div>
-                    <div className={cx('follow', 'c-3', 'col')}>
+                    <div className={cx('follow', 'l-3', 'col', 'm-6', 'c-6')}>
                         <div className={cx('followTitle')}>Follow Us</div>
                         <div className={cx('followContent')}>
                             <div className={cx('followIcon')}>
@@ -72,24 +72,6 @@ function Footer() {
                                 <FontAwesomeIcon
                                     className={cx('insta')}
                                     icon={faInstagram}
-                                />
-                            </div>
-                            <div className={cx('followIcon')}>
-                                <FontAwesomeIcon
-                                    className={cx('twitter')}
-                                    icon={faTwitter}
-                                />
-                            </div>
-                            <div className={cx('followIcon')}>
-                                <FontAwesomeIcon
-                                    className={cx('youtube')}
-                                    icon={faYoutube}
-                                />
-                            </div>
-                            <div className={cx('followIcon')}>
-                                <FontAwesomeIcon
-                                    className={cx('linked')}
-                                    icon={faLinkedinIn}
                                 />
                             </div>
                         </div>

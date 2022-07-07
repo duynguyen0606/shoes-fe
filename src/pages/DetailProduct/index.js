@@ -1,19 +1,35 @@
 import classNames from 'classnames/bind'
 import styles from './DetailProduct.module.css'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router'
 import { formatter } from '../../utils/tool'
+import { addProductToCart, updateCart } from '../../features/cart/cartSlice'
+import Navbar from '../../components/Navbar'
 const cx = classNames.bind(styles)
 
 function DetailProduct() {
+    const dispatch = useDispatch()
     const [qnt, setQnt] = useState(1)
-    const param = useParams();
-    const products = useSelector(state => state.products.products);
-    const detailProduct = products.filter(product => product._id === param.id)[0];
-
+    const param = useParams()
+    const products = useSelector((state) => state.products.products)
+    const detailProduct = products.filter((product) => product._id === param.id)[0]
+    const cart = useSelector((state) => state.cart.products)
+    const handleAddCart = (product, qnt) => {
+        const productNew = { ...product, amount: qnt }
+        if (
+            cart.some((item) => {
+                return product._id === item._id
+            })
+        ) {
+            dispatch(updateCart(productNew))
+        } else {
+            dispatch(addProductToCart(productNew))
+        }
+    }
     return (
         <div className={cx('wrapper')}>
+            <Navbar name={detailProduct.name} />
             <div className="grid wide">
                 <div className={cx('contentPro', 'row')}>
                     <div className={cx('imgPro', 'col', 'c-6')}>
@@ -44,15 +60,16 @@ function DetailProduct() {
                         <div className={cx('pricePro')}>{formatter.format(detailProduct.price)}</div>
                         <div className={cx('sizePro')}>
                             <div className={cx('sizeTitle')}>Size:</div>
-                            {
-                                detailProduct.size.map(item => {
-                                    if(item.amount > 0) {
-                                        return (
-                                            <div className={cx('sizeDetail')}>{item.size}</div>
-                                        )
-                                    }
-                                })
-                            }
+                            {detailProduct.size.map((item) => {
+                                return (
+                                    <div
+                                        className={cx('sizeDetail')}
+                                        key={item.size}
+                                    >
+                                        {item.size}
+                                    </div>
+                                )
+                            })}
                             {/* <div className={cx('sizeDetail', 'activeSize')}>38</div> */}
                         </div>
                         <div className={cx('actionPro')}>
@@ -78,7 +95,14 @@ function DetailProduct() {
                                     </div>
                                 </div>
                             </div>
-                            <div className={cx('addToCart')}>Add to Cart</div>
+                            <div
+                                className={cx('addToCart')}
+                                onClick={() => {
+                                    handleAddCart(detailProduct, qnt)
+                                }}
+                            >
+                                Add to Cart
+                            </div>
                         </div>
                     </div>
                 </div>

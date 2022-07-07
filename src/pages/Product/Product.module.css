@@ -1,33 +1,43 @@
+.content {
+    width: 100%;
+}
+
 .changePage {
     display: flex;
     justify-content: center;
 }
 
 .preBtn,
-.pagePro,
-.pageProNext,
 .nextBtn {
     color: #222;
-    height: 36px;
     width: 36px;
     font-size: 1.4rem;
     text-align: center;
     background-color: #f5f5f5;
-    border-radius: 999px;
+    border-radius: 50%;
+    line-height: 36px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.pagePro {
+    background-color: var(--color-hover);
+    color: var(--white);
+    width: 36px;
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 50%;
     line-height: 36px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 .preBtn:hover,
-.pagePro:hover,
-.pageProNext:hover,
 .nextBtn:hover {
     background-color: var(--color-hover);
     color: var(--white);
 }
 .preBtn,
-.pagePro,
-.pageProNext {
+.pagePro {
     margin-right: 5px;
 }
 .item {

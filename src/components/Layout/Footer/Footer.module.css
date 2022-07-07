@@ -44,25 +44,16 @@
 }
 .followContent {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 .followIcon {
     cursor: pointer;
     font-size: 2.6rem;
+    margin-right: 10px;
 }
 .facebook {
     color: #1199f6;
 }
 .insta {
     color: #d84178;
-}
-.youtube {
-    color: #ff0000;
-}
-.twitter {
-    color: #1d9bf0;
-}
-.linked {
-    color: #0077b7;
 }

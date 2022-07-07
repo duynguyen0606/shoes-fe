@@ -44,7 +44,7 @@ function Home() {
                 </div>
             </div>
             <div className="grid wide">
-                <div className={cx('endow')}>
+                <div className={cx('endow', 'row')}>
                     {endow.map((item, index) => (
                         <div
                             key={index}

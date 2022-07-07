@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { faHouseChimney } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames/bind'
@@ -25,4 +26,4 @@ function Navbar({ name }) {
     )
 }
 
-export default Navbar
+export default memo(Navbar)

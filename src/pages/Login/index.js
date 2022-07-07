@@ -8,7 +8,7 @@ import { apiLogin } from '../../api/userAPI'
 import { loginSuccess } from '../../features/user/userSlice'
 import { showSuccessToast } from '../../utils/toastMessage'
 import styles from './Login.module.css'
-
+import Register from '../Register'
 const cx = classnames.bind(styles)
 
 function Login() {
@@ -93,6 +93,7 @@ function Login() {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
+                        
                         <div className={cx('actionSubmit')}>
                             <button className={cx('submit')} >{register?'Sign up':'Sign In'}</button>
                             <br />
@@ -101,6 +102,7 @@ function Login() {
                                 <span>Bạn chưa có tài khoản? <span style={{color: '#d8355a', cursor: 'pointer'}} onClick={() => setRegister(true)}>Đăng ký</span></span>
                             }
                         </div>
+                            
                     </div>
                 </form>
             </div>

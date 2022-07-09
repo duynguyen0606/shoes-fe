@@ -8,6 +8,9 @@ import Register from '../pages/Register'
 import DetailProduct from '../pages/DetailProduct'
 import Cart from '../pages/Cart'
 import ManageProduct from '../pages/ManageProduct'
+import ManageOrder from '../pages/ManageOrder'
+import ManageUser from '../pages/ManageUser'
+import ManageVoucher from '../pages/ManageVoucher'
 const router = [
     { path: '/', component: Home },
     { path: '/product', component: Product },
@@ -18,6 +21,9 @@ const router = [
     { path: '/cart', component: Cart },
 ]
 const routerAdmin = [
-    { path: '/', component: ManageProduct}
+    { path: '/', component: ManageProduct},
+    { path: '/manage-order', component: ManageOrder},
+    { path: '/manage-account', component: ManageUser},
+    { path: '/manage-voucher', component: ManageVoucher},
 ]
-export { router }
+export { router, routerAdmin }

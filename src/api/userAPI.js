@@ -9,3 +9,17 @@ export const apiSignup = async (data) => {
 export const apiLogout = async (data) => {
     return await axios.post('', data);
 }
+export const apiCheckLogin = async () => {
+    return await axios.post('http://localhost:8000/user/checkLogin',{}, {
+        headers:{
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
+}
+export const getAllAccounts = async () => {
+    return await axios.get('http://localhost:8000/user/list', {
+        headers:{
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
+}

@@ -28,6 +28,7 @@ function Login() {
             console.log(res)
             if(res.data.status === 1){
                 dispatch(loginSuccess(res.data.userFormatted))
+                localStorage.setItem('accessToken', res.data.accessToken);
                 navigation('/');
                 showSuccessToast("Chào mừng bạn đã quay trở lại", "Đăng nhập thành công", "success")
             }else{

@@ -25,11 +25,11 @@ function Header() {
     const [searchResult, setSearchResult] = useState([])
     const userInfor = useSelector((state) => state.user)
     const producList = useSelector((state) => state.products.products)
-    const cart = useSelector((state) => state.cart.products)
+    const cart = useSelector((state) => state.cart.products || [])
     const [selectCartItem, setSelectCartItem] = useState({})
     const totalPriceCart = cart.reduce((pre, cur) => {
         return pre + cur.amount * cur.price
-    }, 0)
+    }, 0);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
@@ -79,6 +79,50 @@ function Header() {
                                     </Link>
                                 </div>
                             </div>
+                            {
+                                userInfor.inforUser.role === 1 && 
+                                <>
+                                    <div className={cx('mainCenter')} style={{width: 'auto'}}>
+                                        <Link
+                                            to="/"
+                                            className={cx('home')}
+                                        >
+                                            Product
+                                        </Link>
+                                        <Link
+                                            to="/manage-order"
+                                            className={cx('product')}
+                                        >
+                                            Order
+                                        </Link> 
+                                        <Link
+                                            to="/manage-account"
+                                            className={cx('product')}
+                                        >
+                                            Account
+                                        </Link>
+                                        <Link
+                                            to="/manage-voucher"
+                                            className={cx('product')}
+                                        >
+                                            Voucher
+                                        </Link>
+                                        {userInfor.isLogin ? (
+                                            <>
+                                                <div className={cx('loggout')}>
+                                                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <button className={cx('login')}>
+                                                <Link to="/login">Login</Link>
+                                            </button>
+                                        )}
+                                    </div>
+                                </>
+                            }
+                            {userInfor.inforUser.role !==1 && 
+                            <>
                             <div className={cx('mainCenter')}>
                                 <Link
                                     to="/"
@@ -116,6 +160,7 @@ function Header() {
                                                     setSearchResult([])
                                                 }, 500)
                                             }}
+                                            style={{margin: 0}}
                                         />
                                         <div className={cx('searchIcon')}>
                                             <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -150,6 +195,7 @@ function Header() {
                                             })}
                                     </div>
                                 </div>
+                                
                                 {userInfor.isLogin ? (
                                     <>
                                         <div className={cx('user')}>
@@ -198,7 +244,7 @@ function Header() {
                                         <div className={cx('menuContent')}>Heleo</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div></>}
                         </div>
                     </div>
                 </div>

@@ -23,11 +23,11 @@ const cartSlice = createSlice({
                 ...state.products,
                 action.payload
             ];
-            storeLocal(state);
+            storeLocal(state.products);
         },
         deleteProductInCart: (state, action) => {
             state.products = state.products.filter(product => product._id !== action.payload._id);
-            storeLocal(state);
+            storeLocal(state.products);
         },
         updateCart: (state, action) => {
             state.products = state.products.map(product => {
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
                     return product;
                 }
             })
-            storeLocal(state);
+            storeLocal(state.products);
         }
     }
 })

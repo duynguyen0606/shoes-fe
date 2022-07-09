@@ -14,7 +14,7 @@ function DetailProduct() {
     const param = useParams()
     const products = useSelector((state) => state.products.products)
     const detailProduct = products.filter((product) => product._id === param.id)[0]
-    const cart = useSelector((state) => state.cart.products)
+    const cart = useSelector((state) => state.cart.products || [])
     const handleAddCart = (product, qnt) => {
         const productNew = { ...product, amount: qnt }
         if (

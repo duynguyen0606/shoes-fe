@@ -15,6 +15,7 @@ import { faUserCircle, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteProductInCart } from '../../../features/cart/cartSlice'
+import {useNavigate} from 'react-router'
 
 const cx = classNames.bind(styles)
 function Header() {
@@ -26,7 +27,8 @@ function Header() {
     const userInfor = useSelector((state) => state.user)
     const producList = useSelector((state) => state.products.products)
     const cart = useSelector((state) => state.cart.products || [])
-    const [selectCartItem, setSelectCartItem] = useState({})
+    const [selectCartItem, setSelectCartItem] = useState({});
+    const navigation = useNavigate();
     const totalPriceCart = cart.reduce((pre, cur) => {
         return pre + cur.amount * cur.price
     }, 0);
@@ -40,6 +42,11 @@ function Header() {
         } else {
             setIsFixed(true)
         }
+    }
+    const handleLogout =() => {
+        localStorage.removeItem('accessToken');
+        navigation('/');
+        window.location.reload();
     }
     const handleOCCart = () => {
         setIsOCCart(!isOCCart)
@@ -109,7 +116,7 @@ function Header() {
                                         </Link>
                                         {userInfor.isLogin ? (
                                             <>
-                                                <div className={cx('loggout')}>
+                                                <div className={cx('loggout')} onClick={handleLogout}>
                                                     <FontAwesomeIcon icon={faArrowRightFromBracket} />
                                                 </div>
                                             </>
@@ -210,7 +217,7 @@ function Header() {
                                             <FontAwesomeIcon icon={faCartShopping} />
                                             <div className={cx('count')}>{cart.length}</div>
                                         </div>
-                                        <div className={cx('loggout')}>
+                                        <div className={cx('loggout')} onClick={handleLogout}>
                                             <FontAwesomeIcon icon={faArrowRightFromBracket} />
                                         </div>
                                     </>

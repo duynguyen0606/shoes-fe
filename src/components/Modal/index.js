@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import { useState } from 'react';
+import { showSuccessToast } from '../../utils/toastMessage';
 import styles from './Modal.module.css'
 
 const cx = classNames.bind(styles)
@@ -15,13 +16,17 @@ const Modal = ({title,onCloseModal, onSubmit, dataPro = undefined, isModalConfir
     const onOk = () => {
 
        if(isModalConfirm){
-            onSubmit({},true);
+            onSubmit({},undefined, true);
        }else{
             if(isModalVoucher){
-                onSubmit({
-                    discount: parseInt(discount),
-                    condition: parseInt(condition)
-                })
+                if(parseInt(discount) === 0 || parseInt(condition) === 0){
+                    showSuccessToast("Vui lòng điền đầy đủ các trường!", "Lỗi", "error");
+                }else{
+                    onSubmit({
+                        discount: parseInt(discount),
+                        condition: parseInt(condition)
+                    })
+                }
             }else{
                 if(dataPro === undefined) {
                     onSubmit({

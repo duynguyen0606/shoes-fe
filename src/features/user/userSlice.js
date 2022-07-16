@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    isLogin: true,
+    isLogin: false,
     inforUser: {
-        email: 'tangdatsdbg@gmail.com',
-        name: 'Dat Manh',
-        address: 'Ha Noi',
-        phone: '0348513413',
+        email: '',
+        name: '',
+        address: '',
+        phone: '',
         purchaseHistory: [],
-        role: 1
+        role: 0,
     },
 }
 const userSlice = createSlice({
@@ -23,9 +23,13 @@ const userSlice = createSlice({
             state.isLogin = false
             state.inforUser = {}
         },
+        updateProfile: (state, action) => {
+            state.inforUser.address = action.payload.address
+            state.inforUser.phone = action.payload.phoneNumber
+        },
     },
 })
 
-export const { loginSuccess, logout } = userSlice.actions
+export const { loginSuccess, logout, updateProfile } = userSlice.actions
 
 export default userSlice.reducer

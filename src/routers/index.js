@@ -3,11 +3,14 @@ import Product from '../pages/Product'
 import Login from '../pages/Login'
 import User from '../pages/User'
 
-
 import Register from '../pages/Register'
 import DetailProduct from '../pages/DetailProduct'
 import Cart from '../pages/Cart'
 import ManageProduct from '../pages/ManageProduct'
+import Checkout from '../pages/Checkout'
+import ManageOrder from '../pages/ManageOrder'
+import ManageUser from '../pages/ManageUser'
+import ManageVoucher from '../pages/ManageVoucher'
 const router = [
     { path: '/', component: Home },
     { path: '/product', component: Product },
@@ -16,8 +19,12 @@ const router = [
     { path: '/register', component: Register },
     { path: '/detail/:id', component: DetailProduct },
     { path: '/cart', component: Cart },
+    { path: '/checkout', component: Checkout },
 ]
 const routerAdmin = [
-    { path: '/', component: ManageProduct}
+    { path: '/', component: ManageProduct},
+    { path: '/manage-order', component: ManageOrder},
+    { path: '/manage-account', component: ManageUser},
+    { path: '/manage-voucher', component: ManageVoucher},
 ]
-export { router }
+export { router, routerAdmin }

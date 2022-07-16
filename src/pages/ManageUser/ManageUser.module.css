@@ -10,7 +10,6 @@
     text-align: center;
     padding: 8px;
 }
-
 .search {
     width: 90%;
     height: 46px;
@@ -51,43 +50,4 @@
     right: 5%;
     top: 20%;
     font-size: 1.8rem;
-}
-
-.changePage {
-    display: flex;
-    justify-content: center;
-}
-
-.preBtn,
-.nextBtn {
-    color: #222;
-    width: 36px;
-    font-size: 1.4rem;
-    text-align: center;
-    background-color: #f5f5f5;
-    border-radius: 50%;
-    line-height: 36px;
-
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.pagePro {
-    background-color: var(--color-hover);
-    color: var(--white);
-    width: 36px;
-    font-size: 1.4rem;
-    text-align: center;
-    border-radius: 50%;
-    line-height: 36px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.preBtn:hover,
-.nextBtn:hover {
-    background-color: var(--color-hover);
-    color: var(--white);
-}
-.preBtn,
-.pagePro {
-    margin-right: 5px;
 }

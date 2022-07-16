@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames/bind'
@@ -11,15 +11,6 @@ const cx = classNames.bind(styles)
 function Product() {
     const products = useSelector((state) => state.products.products)
     const [currentPage, setCurrentPage] = useState(1)
-    // useEffect(() => {
-    //     const handleChangePage = () => {
-    //         productsRender = products.filter((product) => {
-    //             return true
-    //         })
-    //     }
-    //     handleChangePage()
-    // }, [currentPage])
-
     const handleDeCrePage = () => {
         if (currentPage !== 1) {
             setCurrentPage(currentPage - 1)
@@ -32,7 +23,7 @@ function Product() {
     }
     return (
         <div className={cx('wrapper')}>
-            <Navbar name={'products'} />
+            <Navbar name={'product'} />
             <div className="grid wide">
                 <div className={cx('content', 'row')}>
                     {products.slice(8 * (currentPage - 1), 8 * currentPage).map((product) => {

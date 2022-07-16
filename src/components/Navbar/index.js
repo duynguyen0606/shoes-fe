@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css'
 
 const cx = classNames.bind(styles)
-function Navbar({ name }) {
+function Navbar({ name, disable = false }) {
     return (
         <div className={cx('wrapper')}>
             <div className="grid wide">
@@ -18,7 +18,7 @@ function Navbar({ name }) {
                     </div>
                     <div className={cx('path')}>/</div>
                     <div className={cx('subPath')}>
-                        <Link to={`/${name}`}>{name}</Link>
+                        <Link to={!disable && `/${name}`}>{name}</Link>
                     </div>
                 </div>
             </div>

@@ -129,6 +129,11 @@
     border-bottom: 1px solid var(--primary);
 }
 
+.titleDetail {
+    pointer-events: none;
+    user-select: none;
+}
+
 .avatar {
     width: 5rem;
     height: 5rem;

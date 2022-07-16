@@ -13,21 +13,20 @@ import { loginSuccess } from './features/user/userSlice'
 function App() {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
-    const userInfor = useSelector((state) => state.user.inforUser);
-
+    const userInfor = useSelector((state) => state.user.inforUser)
 
     useEffect(() => {
         const cart = localStorage.getItem('cart') || '[]'
         dispatch(setCart(JSON.parse(cart)))
-    }, [])
+    }, [dispatch])
     useEffect(() => {
-        loadProducts();
-        checkLogin();
+        loadProducts()
+        checkLogin()
     }, [])
 
     const checkLogin = async () => {
-        const res = await apiCheckLogin();
-        if(res.status === 200) {
+        const res = await apiCheckLogin()
+        if (res.status === 200) {
             dispatch(loginSuccess(res.data.currentUser))
         }
     }
@@ -45,7 +44,7 @@ function App() {
                     <Loading />
                 ) : (
                     <Routes>
-                        {(userInfor.role === 1?routerAdmin:router).map((route, index) => {
+                        {(userInfor.role === 1 ? routerAdmin : router).map((route, index) => {
                             const Page = route.component
                             let Layout = DefaultLayout
                             return (

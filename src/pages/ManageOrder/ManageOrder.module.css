@@ -1,19 +1,15 @@
-table {
+.tableWrapper {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
     margin: 3rem 2rem;
 }
 
-td,
-th {
+.tableWrapper td,
+.tableWrapper th {
     border: 1px solid #dddddd;
     text-align: center;
     padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
 }
 
 .search {
@@ -56,4 +52,46 @@ tr:nth-child(even) {
     right: 5%;
     top: 20%;
     font-size: 1.8rem;
+}
+
+.changePage {
+    display: flex;
+    justify-content: center;
+}
+
+.preBtn,
+.nextBtn {
+    color: #222;
+    width: 36px;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    line-height: 36px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagePro {
+    background-color: var(--color-hover);
+    color: var(--white);
+    width: 36px;
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 36px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.preBtn:hover,
+.nextBtn:hover {
+    background-color: var(--color-hover);
+    color: var(--white);
+}
+
+.preBtn,
+.pagePro {
+    margin-right: 5px;
 }

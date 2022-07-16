@@ -15,9 +15,21 @@ import { faUserCircle, faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteProductInCart } from '../../../features/cart/cartSlice'
-import {useNavigate} from 'react-router'
+import { useNavigate } from 'react-router'
 
 const cx = classNames.bind(styles)
+const namePage = [
+    {
+        id: 1,
+        content: 'Home',
+        link: '/',
+    },
+    {
+        id: 2,
+        content: 'Product',
+        link: '/product',
+    },
+]
 function Header() {
     const dispatch = useDispatch()
     const [isFixed, setIsFixed] = useState(false)
@@ -27,12 +39,12 @@ function Header() {
     const userInfor = useSelector((state) => state.user)
     const producList = useSelector((state) => state.products.products)
     const cart = useSelector((state) => state.cart.products || [])
-    const [selectCartItem, setSelectCartItem] = useState({});
-    const navigation = useNavigate();
+    const [selectCartItem, setSelectCartItem] = useState({})
+    const [active, setActive] = useState({ id: 1, content: 'Home', link: '/' })
+    const navigation = useNavigate()
     const totalPriceCart = cart.reduce((pre, cur) => {
         return pre + cur.amount * cur.price
-    }, 0);
-
+    }, 0)
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
     }, [])
@@ -43,10 +55,10 @@ function Header() {
             setIsFixed(true)
         }
     }
-    const handleLogout =() => {
-        localStorage.removeItem('accessToken');
-        navigation('/');
-        window.location.reload();
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken')
+        navigation('/')
+        window.location.reload()
     }
     const handleOCCart = () => {
         setIsOCCart(!isOCCart)
@@ -86,10 +98,12 @@ function Header() {
                                     </Link>
                                 </div>
                             </div>
-                            {
-                                userInfor.inforUser.role === 1 && 
+                            {userInfor.inforUser.role === 1 && (
                                 <>
-                                    <div className={cx('mainCenter')} style={{width: 'auto'}}>
+                                    <div
+                                        className={cx('mainCenter')}
+                                        style={{ width: 'auto' }}
+                                    >
                                         <Link
                                             to="/"
                                             className={cx('home')}
@@ -101,7 +115,7 @@ function Header() {
                                             className={cx('product')}
                                         >
                                             Order
-                                        </Link> 
+                                        </Link>
                                         <Link
                                             to="/manage-account"
                                             className={cx('product')}
@@ -116,7 +130,10 @@ function Header() {
                                         </Link>
                                         {userInfor.isLogin ? (
                                             <>
-                                                <div className={cx('loggout')} onClick={handleLogout}>
+                                                <div
+                                                    className={cx('loggout')}
+                                                    onClick={handleLogout}
+                                                >
                                                     <FontAwesomeIcon icon={faArrowRightFromBracket} />
                                                 </div>
                                             </>
@@ -127,131 +144,139 @@ function Header() {
                                         )}
                                     </div>
                                 </>
-                            }
-                            {userInfor.inforUser.role !==1 && 
-                            <>
-                            <div className={cx('mainCenter')}>
-                                <Link
-                                    to="/"
-                                    className={cx('home')}
-                                >
-                                    Home
-                                </Link>
-                                <Link
-                                    to="/product"
-                                    className={cx('product')}
-                                >
-                                    Product
-                                </Link>
-                            </div>
-                            <div className={cx('mainRight')}>
-                                <div className={cx('search')}>
-                                    <form
-                                        className={cx('searchForm')}
-                                        action="search"
-                                    >
-                                        <input
-                                            className={cx('searchInput')}
-                                            autoFocus={true}
-                                            type="text"
-                                            spellCheck={false}
-                                            placeholder="Search for the product you want..."
-                                            onChange={(e) => {
-                                                handleInputSearch(e.target.value)
-                                            }}
-                                            onFocus={(e) => {
-                                                handleInputSearch(e.target.value)
-                                            }}
-                                            onBlur={(e) => {
-                                                setTimeout(() => {
-                                                    setSearchResult([])
-                                                }, 500)
-                                            }}
-                                            style={{margin: 0}}
-                                        />
-                                        <div className={cx('searchIcon')}>
-                                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            )}
+                            {userInfor.inforUser.role !== 1 && (
+                                <>
+                                    <div className={cx('mainCenter')}>
+                                        <Link
+                                            to="/"
+                                            className={cx('home')}
+                                        >
+                                            Home
+                                        </Link>
+                                        <Link
+                                            to="/product"
+                                            className={cx('product')}
+                                        >
+                                            Product
+                                        </Link>
+                                    </div>
+                                    <div className={cx('mainRight')}>
+                                        <div className={cx('search')}>
+                                            <form
+                                                className={cx('searchForm')}
+                                                action="search"
+                                            >
+                                                <input
+                                                    className={cx('searchInput')}
+                                                    autoFocus={true}
+                                                    type="text"
+                                                    spellCheck={false}
+                                                    placeholder="Search for the product you want..."
+                                                    onChange={(e) => {
+                                                        handleInputSearch(e.target.value)
+                                                    }}
+                                                    onFocus={(e) => {
+                                                        handleInputSearch(e.target.value)
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        setTimeout(() => {
+                                                            setSearchResult([])
+                                                        }, 500)
+                                                    }}
+                                                    style={{ margin: 0 }}
+                                                />
+                                                <div className={cx('searchIcon')}>
+                                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                                </div>
+                                            </form>
+                                            <div className={cx('search-result')}>
+                                                {searchResult.length > 0 &&
+                                                    searchResult.map((item) => {
+                                                        return (
+                                                            <Link
+                                                                to={`/detail/${item._id}`}
+                                                                key={item._id}
+                                                            >
+                                                                <div
+                                                                    style={{
+                                                                        display: 'flex',
+                                                                        backgroundColor: '#fff',
+                                                                        padding: '10px',
+                                                                        borderBottom: '1px #ccc solid',
+                                                                    }}
+                                                                >
+                                                                    <div style={{ width: '90px' }}>
+                                                                        <img
+                                                                            src={item.linkImg[0]}
+                                                                            alt={item.name}
+                                                                        />
+                                                                    </div>
+                                                                    <div style={{ padding: '10px' }}>
+                                                                        <div>{item.name}</div>
+                                                                        <span>{item.price}đ</span>
+                                                                    </div>
+                                                                </div>
+                                                            </Link>
+                                                        )
+                                                    })}
+                                            </div>
                                         </div>
-                                    </form>
-                                    <div className={cx('search-result')}>
-                                        {searchResult.length > 0 &&
-                                            searchResult.map((item) => {
-                                                return (
-                                                    <Link to={`/detail/${item._id}`}>
-                                                        <div
-                                                            style={{
-                                                                display: 'flex',
-                                                                backgroundColor: '#fff',
-                                                                padding: '10px',
-                                                                borderBottom: '1px #ccc solid',
-                                                            }}
-                                                        >
-                                                            <div style={{ width: '90px' }}>
-                                                                <img
-                                                                    src={item.linkImg[0]}
-                                                                    alt={item.name}
-                                                                />
-                                                            </div>
-                                                            <div style={{ padding: '10px' }}>
-                                                                <div>{item.name}</div>
-                                                                <span>{item.price}đ</span>
-                                                            </div>
-                                                        </div>
+
+                                        {userInfor.isLogin ? (
+                                            <>
+                                                <div className={cx('user')}>
+                                                    <Link to="/user">
+                                                        <FontAwesomeIcon icon={faUserCircle} />
                                                     </Link>
-                                                )
-                                            })}
+                                                </div>
+                                                <div
+                                                    className={cx('cart')}
+                                                    onClick={handleOCCart}
+                                                >
+                                                    <FontAwesomeIcon icon={faCartShopping} />
+                                                    <div className={cx('count')}>{cart.length}</div>
+                                                </div>
+                                                <div
+                                                    className={cx('loggout')}
+                                                    onClick={handleLogout}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <button className={cx('login')}>
+                                                <Link to="/login">Login</Link>
+                                            </button>
+                                        )}
                                     </div>
-                                </div>
-                                
-                                {userInfor.isLogin ? (
-                                    <>
-                                        <div className={cx('user')}>
-                                            <Link to="/user">
-                                                <FontAwesomeIcon icon={faUserCircle} />
-                                            </Link>
-                                        </div>
-                                        <div
-                                            className={cx('cart')}
-                                            onClick={handleOCCart}
-                                        >
-                                            <FontAwesomeIcon icon={faCartShopping} />
-                                            <div className={cx('count')}>{cart.length}</div>
-                                        </div>
-                                        <div className={cx('loggout')} onClick={handleLogout}>
-                                            <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                                        </div>
-                                    </>
-                                ) : (
-                                    <button className={cx('login')}>
-                                        <Link to="/login">Login</Link>
-                                    </button>
-                                )}
-                            </div>
-                            <div className={cx('mobileVersion')}>
-                                <FontAwesomeIcon
-                                    className={cx('iconMobile')}
-                                    icon={faBars}
-                                    onClick={handleOCMenu}
-                                />
-                                <div className={cx('viewMenuMobile', isOCMenu && 'show')}>
-                                    <div
-                                        className={cx('overlayMobile')}
-                                        onClick={handleOCMenu}
-                                    ></div>
-                                    <div className={cx('menuWrapper')}>
-                                        <div
-                                            className={cx('btnClose')}
+                                    <div className={cx('mobileVersion')}>
+                                        <FontAwesomeIcon
+                                            className={cx('iconMobile')}
+                                            icon={faBars}
                                             onClick={handleOCMenu}
-                                        >
-                                            <FontAwesomeIcon
-                                                className={cx('btnCloseIcon')}
-                                                icon={faXmark}
-                                            />
+                                        />
+                                        <div className={cx('viewMenuMobile', isOCMenu && 'show')}>
+                                            <div
+                                                className={cx('overlayMobile')}
+                                                onClick={handleOCMenu}
+                                            ></div>
+                                            <div className={cx('menuWrapper')}>
+                                                <div
+                                                    className={cx('btnClose')}
+                                                    onClick={handleOCMenu}
+                                                >
+                                                    <FontAwesomeIcon
+                                                        className={cx('btnCloseIcon')}
+                                                        icon={faXmark}
+                                                    />
+                                                </div>
+                                                <div className={cx('menuContent')}>Heleo</div>
+                                            </div>
                                         </div>
-                                        <div className={cx('menuContent')}>Heleo</div>
                                     </div>
-                                </div>
-                            </div></>}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -275,35 +300,33 @@ function Header() {
                         {cart.length > 0 ? (
                             <>
                                 {cart.map((item) => (
-                                    <>
-                                        <div
-                                            className={cx('cartPro')}
-                                            key={item._id}
-                                        >
-                                            <div className={cx('cartProImg')}>
-                                                <img
-                                                    src={item.linkImg[0]}
-                                                    alt="Anh1"
-                                                />
-                                            </div>
-                                            <div className={cx('cartDesc')}>
-                                                <div className={cx('cartName')}>{item.name}</div>
-                                                <div className={cx('cartQnt')}>
-                                                    <div className={cx('qnt')}>{item.amount}</div>
-                                                    <div>x</div>
-                                                    <div className={cx('price')}>{formatter.format(item.price)}</div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                className={cx('cartProAction')}
-                                                onClick={() => {
-                                                    handleRemoveCart(item)
-                                                }}
-                                            >
-                                                <FontAwesomeIcon icon={faTrashCan} />
+                                    <div
+                                        className={cx('cartPro')}
+                                        key={item._id}
+                                    >
+                                        <div className={cx('cartProImg')}>
+                                            <img
+                                                src={item.linkImg[0]}
+                                                alt="Anh1"
+                                            />
+                                        </div>
+                                        <div className={cx('cartDesc')}>
+                                            <div className={cx('cartName')}>{item.name}</div>
+                                            <div className={cx('cartQnt')}>
+                                                <div className={cx('qnt')}>{item.amount}</div>
+                                                <div>x</div>
+                                                <div className={cx('price')}>{formatter.format(item.price)}</div>
                                             </div>
                                         </div>
-                                    </>
+                                        <div
+                                            className={cx('cartProAction')}
+                                            onClick={() => {
+                                                handleRemoveCart(item)
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={faTrashCan} />
+                                        </div>
+                                    </div>
                                 ))}
                                 <div className={cx('cartTotal')}>
                                     <div className={cx('totalTitle')}>Total</div>

@@ -9,7 +9,7 @@ import Navbar from '../../components/Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { createNewFeedbackApi, getAllFeedbackByProApi } from '../../api/feedbackAPI'
-import { showSuccessToast } from "../../utils/toastMessage"
+import { showSuccessToast } from '../../utils/toastMessage'
 const cx = classNames.bind(styles)
 
 function DetailProduct() {
@@ -17,39 +17,34 @@ function DetailProduct() {
     const [qnt, setQnt] = useState(1)
     const param = useParams()
     const products = useSelector((state) => state.products.products)
-    const userInfor = useSelector(state => state.user.inforUser);
-    const isLogin = useSelector(state => state.user.isLogin);
+    const userInfor = useSelector((state) => state.user.inforUser)
     const detailProduct = products.filter((product) => product._id === param.id)[0]
     const cart = useSelector((state) => state.cart.products || [])
-    const [feedbacks, setFeedbacks] = useState([]);
-    const [newFeedback, setNewFeedback] = useState('');
+    const [feedbacks, setFeedbacks] = useState([])
+    const [newFeedback, setNewFeedback] = useState('')
 
     useEffect(() => {
         loadFeedback()
     }, [])
 
-    const loadFeedback = async() => {
-        const res = await getAllFeedbackByProApi({productId: param.id});
-        setFeedbacks(res.data);
+    const loadFeedback = async () => {
+        const res = await getAllFeedbackByProApi({ productId: param.id })
+        console.log(res)
+        setFeedbacks(res.data)
     }
 
     const handleSendComment = async () => {
-        if(newFeedback.trim().length>0){
-            const res = await createNewFeedbackApi({
-                content: newFeedback,
-                owner: userInfor.id,
-                productId: param.id,
-            })
-            if(res.status === 200) {
-                showSuccessToast("Gửi feedback thành công", "Thành công", "success");
-            }else{
-                showSuccessToast("Có lỗi xảy ra, vui lòng thử lại!", "ERROR", "error");
-            }
-            loadFeedback();
-            setNewFeedback("");
-        }else{
-            showSuccessToast("Vui lòng nhập bình luận!", "Warning", "error");
+        const res = await createNewFeedbackApi({
+            content: newFeedback,
+            owner: userInfor.id,
+            productId: param.id,
+        })
+        if (res.status === 200) {
+            showSuccessToast('Gửi feedback thành công', 'Thành công', 'success')
+        } else {
+            showSuccessToast('Có lỗi xảy ra, vui lòng thử lại!', 'ERROR', 'error')
         }
+        loadFeedback()
     }
 
     const handleAddCart = (product, qnt) => {
@@ -60,13 +55,17 @@ function DetailProduct() {
             })
         ) {
             dispatch(updateCart(productNew))
+            showSuccessToast('Add product success', 'Success', 'success')
         } else {
             dispatch(addProductToCart(productNew))
         }
     }
     return (
         <div className={cx('wrapper')}>
-            <Navbar name={detailProduct.name} />
+            <Navbar
+                name={detailProduct.name}
+                disable={true}
+            />
             <div className="grid wide">
                 <div className={cx('contentPro', 'row')}>
                     <div className={cx('imgPro', 'col', 'c-6')}>
@@ -145,40 +144,51 @@ function DetailProduct() {
                 </div>
                 <div className={cx('feedback')}>
                     Đánh giá sản phẩm
-                    <div style={{display: 'flex'}}>
-                        {
-                            isLogin &&
-                            <>
-                                <input value={newFeedback} onChange={(e) => setNewFeedback(e.target.value)} type="text" placeholder="Vui lòng nhập đánh giá tại đây"/>
-                                <button style={{padding: '1rem 2rem', margin: '8px 0 8px 2rem', backgroundColor: '#d8355a', cursor: 'pointer'}}
-                                    onClick={handleSendComment}
-                                >Gửi</button>
-                            </>
-                        }
+                    <div style={{ display: 'flex' }}>
+                        <input
+                            value={newFeedback}
+                            onChange={(e) => setNewFeedback(e.target.value)}
+                            type="text"
+                            placeholder="Vui lòng nhập đánh giá tại đây"
+                        />
+                        <button
+                            style={{
+                                padding: '1rem 2rem',
+                                margin: '8px 0 8px 2rem',
+                                backgroundColor: '#d8355a',
+                                cursor: 'pointer',
+                            }}
+                            onClick={handleSendComment}
+                        >
+                            Gửi
+                        </button>
                     </div>
-                    {
-                        feedbacks.map(item => {
-                            return (
-                                <div style={{display: 'flex', borderBottom: '1px solid #ccc', padding: '2rem 0'}}>
-                                    <div>
-                                        <div className={cx('avatar')}>
-                                            <FontAwesomeIcon icon={faUser} />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            {item.owner.name}
-                                            <br />
-                                            <small>{new Date(item.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }</small>
-                                        </div>
-                                        <div>
-                                            {item.content}
-                                        </div>
+                    {feedbacks.map((item) => {
+                        return (
+                            <div style={{ display: 'flex', borderBottom: '1px solid #ccc', padding: '2rem 0' }}>
+                                <div>
+                                    <div className={cx('avatar')}>
+                                        <FontAwesomeIcon icon={faUser} />
                                     </div>
                                 </div>
-                            )
-                        })
-                    }
+                                <div>
+                                    <div>
+                                        {item.owner.name}
+                                        <br />
+                                        <small>
+                                            {new Date(item.createdAt).toLocaleDateString('en-us', {
+                                                weekday: 'long',
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric',
+                                            })}
+                                        </small>
+                                    </div>
+                                    <div>{item.content}</div>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>

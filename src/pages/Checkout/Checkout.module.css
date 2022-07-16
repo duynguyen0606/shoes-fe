@@ -1,0 +1,98 @@
+.wrapper {
+    background-color: #f0f0f0;
+    color: var(--black);
+}
+.formTitle {
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.formName {
+    margin-bottom: 10px;
+}
+.fName {
+    margin-right: 20px;
+    padding: 0 12px;
+}
+.inputUserType {
+    margin-bottom: 10px;
+}
+.cart {
+    padding-left: 10px;
+}
+.cartTitle {
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.cartList {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+}
+.cartItem {
+    display: flex;
+    padding: 12px 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.itemQnt {
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.itemName {
+    font-weight: 600;
+    color: var(--black);
+}
+.qnt {
+    margin-right: 4px;
+}
+.price {
+    margin-left: 4px;
+}
+.totalCart {
+    margin-top: 10px;
+    padding: 12px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+}
+.totalPrice {
+    color: var(--black);
+    font-weight: 700;
+}
+.vouc {
+    display: flex;
+    padding: 12px 20px;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+}
+.vouncValue {
+    font-weight: 700;
+    color: #a8ae45;
+}
+
+.finish {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    float: right;
+    border-radius: 10px;
+    width: 40%;
+    background-color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.finish:hover {
+    background: var(--color-hover);
+    color: #fff;
+}

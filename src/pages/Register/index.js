@@ -1,6 +1,7 @@
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classnames from 'classnames/bind'
+import { Link } from 'react-router-dom'
 import styles from './Register.module.css'
 
 const cx = classnames.bind(styles)
@@ -66,7 +67,7 @@ function Register() {
                         </div>
                         <div>
                             {' '}
-                            By creating an account you agree to our <a href="#">Terms & Privacy</a>.
+                            By creating an account you agree to our <Link>Terms & Privacy</Link>
                         </div>
 
                         <div className={cx('actionSubmit')}>

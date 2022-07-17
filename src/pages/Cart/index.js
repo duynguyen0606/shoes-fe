@@ -57,7 +57,7 @@ function Cart() {
                                         </td>
                                         <td className={cx('proDetail')}>
                                             <div className={cx('proName')}>{item.name}</div>
-                                            <div className={cx('proSize')}>Size: {item.size[0].size}</div>
+                                            <div className={cx('proSize')}>Size: {item.size}</div>
                                         </td>
                                         <td className={cx('proPrice')}>{formatter.format(item.price)}</td>
                                         <td className={cx('proQnt')}>

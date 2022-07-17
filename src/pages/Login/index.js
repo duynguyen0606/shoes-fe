@@ -25,9 +25,8 @@ function Login() {
             if (res.data.status === 1) {
                 dispatch(loginSuccess(res.data.user))
                 localStorage.setItem('accessToken', res.data.accessToken)
-                navigation('/')
+                window.location.replace('/');
                 showSuccessToast('Chào mừng bạn đã đến với cửa hàng', 'Tạo tài khoản thành công', 'success')
-                window.location.reload()
             } else {
                 showSuccessToast('Email đã được dùng!', 'Tạo tài khoản thất bại', 'error')
             }
@@ -36,9 +35,8 @@ function Login() {
             if (res.data.status === 1) {
                 dispatch(loginSuccess(res.data.userFormatted))
                 localStorage.setItem('accessToken', res.data.accessToken)
-                navigation('/')
+                window.location.replace('/');
                 showSuccessToast('Chào mừng bạn đã quay trở lại', 'Đăng nhập thành công', 'success')
-                window.location.reload()
             } else {
                 showSuccessToast('Email hoặc mật khẩu không chính xác!', 'Đăng nhập thất bại', 'error')
             }

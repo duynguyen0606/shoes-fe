@@ -17,8 +17,9 @@ function Checkout() {
     const navigation = useNavigate()
     const dispatch = useDispatch()
     const voucher = useSelector((state) => state.vouchers.vouchers)
-    const [vouc, setVouc] = useState(voucher[0].discount)
+    const [vouc, setVouc] = useState(0)
     const cart = useSelector((state) => state.cart.products)
+    const currentUser = useSelector((state) => state.user.inforUser)
     const totalCart = cart.reduce((pre, cur) => {
         return pre + cur.amount * cur.price
     }, 0)
@@ -27,8 +28,9 @@ function Checkout() {
         products: cart,
         totalPrice: totalBill,
         status: 0,
-        address: '',
-        phoneNumber: '',
+        address: currentUser.address,
+        phoneNumber: currentUser.phoneNumber,
+        size: cart.map(item => item.size)
     })
     const [infoUserUpdate, setInfoUserUpdate] = useState({
         address: '',
@@ -45,21 +47,27 @@ function Checkout() {
 
     const handleOrder = async (e) => {
         e.preventDefault()
-        const res = await apiCreateOrder(infoUser)
-        if (res.data) {
-            showSuccessToast('Order Success', 'Success', 'success')
-            navigation('/')
-            window.location.reload()
+        if(cart.length === 0) {
+            showSuccessToast("Vui lòng chọn sản phẩm trước khi thanh toán", "Cảnh báo!", "error");
+        }else{
+            const res = await apiCreateOrder({...infoUser, userId: currentUser.id})
+            if (res.data) {
+                showSuccessToast('Order Success', 'Success', 'success')
+                localStorage.removeItem('cart');
+                setTimeout(() =>{
+                    window.location.replace('/')
+                }, 1000)
+            }
         }
     }
-    const handleUpdateProfile = async (e) => {
-        e.preventDefault()
-        const res = await apiUpdateProfile(infoUserUpdate)
-        dispatch(updateProfile(res.data))
-    }
+    // const handleUpdateProfile = async (e) => {
+    //     e.preventDefault()
+    //     const res = await apiUpdateProfile(infoUserUpdate)
+    //     dispatch(updateProfile(res.data))
+    // }
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('content')}>
+            <div className={cx('content')} style={{minHeight: '600px'}}>
                 <div className="grid wide">
                     <div className="row">
                         <div className={cx('form', 'c-8')}>
@@ -68,7 +76,7 @@ function Checkout() {
                                 className={cx('formContent')}
                                 onSubmit={(e) => {
                                     handleOrder(e)
-                                    handleUpdateProfile(e)
+                                    // handleUpdateProfile(e)
                                 }}
                             >
                                 <div className={cx('inputUserType')}>
@@ -81,6 +89,7 @@ function Checkout() {
                                         required={true}
                                         type="text"
                                         id={cx('address')}
+                                        value={currentUser.address}
                                     />
                                 </div>
                                 <div className={cx('inputUserType')}>
@@ -93,6 +102,7 @@ function Checkout() {
                                         required={true}
                                         type="text"
                                         id={cx('phone')}
+                                        value={currentUser.phoneNumber}
                                     />
                                 </div>
                                 <div className={cx('inputUserType')}>
@@ -114,7 +124,7 @@ function Checkout() {
                                                 key={item._id}
                                                 disabled={totalCart < item.condition}
                                             >
-                                                {item.discount}%
+                                                Giảm {item.discount}% áp dụng đối với đơn hàng tối thiểu {formatter.format(item.condition)}đ
                                             </option>
                                         ))}
                                     </select>
@@ -149,7 +159,7 @@ function Checkout() {
                                 ))}
                             </div>
                             <div className={cx('vouc')}>
-                                <div className={cx('voucTitle')}>Voucher {vouc}%</div>
+                                <div className={cx('voucTitle')}>Voucher {vouc ===0 ?"":`${vouc}%`}</div>
                                 <div className={cx('vouncValue')}>{formatter.format(totalCart * vouc * 0.01)}</div>
                             </div>
                             <div className={cx('totalCart')}>

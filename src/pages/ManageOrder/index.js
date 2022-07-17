@@ -5,6 +5,7 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { getListOrderByAdmin, updateStatusOrderApi } from '../../api/orderAPI'
 import styles from './ManageOrder.module.css'
 import { showSuccessToast } from '../../utils/toastMessage'
+import { formatter } from '../../utils/tool'
 
 const cx = classNames.bind(styles)
 
@@ -38,7 +39,7 @@ const ManageOrder = () => {
         }
     }
     const handleInCrePage = () => {
-        if (currentPage * 4 <= listOrders.length) {
+        if (currentPage * 4 <= listOrders.filter((item) => item.status === statusTable).length) {
             setCurrentPage(currentPage + 1)
         }
     }
@@ -105,14 +106,14 @@ const ManageOrder = () => {
                     <th>Trạng thái đơn hàng</th>
                 </tr>
                 {listOrders
-                    .slice(4 * (currentPage - 1), 4 * currentPage)
                     .filter((item) => item.status === statusTable)
+                    .slice(4 * (currentPage - 1), 4 * currentPage)
                     .map((item, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
-                            {/* <td>{item.userId.name}</td> */}
-                            <td>{item.products.map((product) => product.name).join(', ')}</td>
-                            <td>{item.totalPrice}</td>
+                            <td>{item.userId.name}</td>
+                            <td>{item.products.map((product, index) => `${product.name}-size: ${item.size[index]}`).join(', ')}</td>
+                            <td>{formatter.format(item.totalPrice)}</td>
                             <td>{item.address}</td>
                             <td>{item.phoneNumber}</td>
                             <td>
@@ -120,7 +121,7 @@ const ManageOrder = () => {
                                     style={{ width: '200px' }}
                                     value={item.status}
                                     onChange={(e) =>
-                                        handleChangeStatusOrder({ id: item._id, data: { status: e.target.value } })
+                                        handleChangeStatusOrder({ _id: item._id, data: { status: e.target.value } })
                                     }
                                 >
                                     <option value={0}>Đang xử lý</option>

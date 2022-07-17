@@ -57,8 +57,7 @@ function Header() {
     }
     const handleLogout = () => {
         localStorage.removeItem('accessToken')
-        navigation('/')
-        window.location.reload()
+        window.location.replace('/');
     }
     const handleOCCart = () => {
         setIsOCCart(!isOCCart)
@@ -316,6 +315,7 @@ function Header() {
                                                 <div className={cx('qnt')}>{item.amount}</div>
                                                 <div>x</div>
                                                 <div className={cx('price')}>{formatter.format(item.price)}</div>
+                                                <div style={{marginLeft: '2rem'}}>Size: {item.size}</div>
                                             </div>
                                         </div>
                                         <div

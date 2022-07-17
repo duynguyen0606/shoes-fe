@@ -7,6 +7,13 @@ export const getListOrderByAdmin = async () => {
         },
     })
 }
+export const getListOrderByUserId = async (reqBody) => {
+    return await axios.post('http://localhost:8000/orderByUserId', reqBody, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+    })
+}
 export const updateStatusOrderApi = async (reqBody) => {
     return await axios.post('http://localhost:8000/order/update', reqBody, {
         headers: {
@@ -21,7 +28,7 @@ export const apiCreateOrder = async (resBody) => {
         },
     })
 }
-export const apiDeleteProduct = async (resBody) => {
+export const apiCancelOrder = async (resBody) => {
     return await axios.post('http://localhost:8000/order/update', resBody, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,

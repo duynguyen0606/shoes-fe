@@ -22,6 +22,7 @@ function DetailProduct() {
     const cart = useSelector((state) => state.cart.products || [])
     const [feedbacks, setFeedbacks] = useState([])
     const [newFeedback, setNewFeedback] = useState('')
+    const [size, setSize] = useState(detailProduct.size[0].size);
 
     useEffect(() => {
         loadFeedback()
@@ -51,14 +52,14 @@ function DetailProduct() {
         const productNew = { ...product, amount: qnt }
         if (
             cart.some((item) => {
-                return product._id === item._id
+                return (product._id === item._id && product.size === item.size)
             })
         ) {
             dispatch(updateCart(productNew))
-            showSuccessToast('Add product success', 'Success', 'success')
         } else {
             dispatch(addProductToCart(productNew))
         }
+        showSuccessToast('Add product success', 'Success', 'success')
     }
     return (
         <div className={cx('wrapper')}>
@@ -66,7 +67,7 @@ function DetailProduct() {
                 name={detailProduct.name}
                 disable={true}
             />
-            <div className="grid wide">
+            <div className="grid wide" style={{minHeight: '500px'}}>
                 <div className={cx('contentPro', 'row')}>
                     <div className={cx('imgPro', 'col', 'c-6')}>
                         <div className={cx('mainImg')}>
@@ -96,16 +97,19 @@ function DetailProduct() {
                         <div className={cx('pricePro')}>{formatter.format(detailProduct.price)}</div>
                         <div className={cx('sizePro')}>
                             <div className={cx('sizeTitle')}>Size:</div>
-                            {detailProduct.size.map((item) => {
-                                return (
-                                    <div
-                                        className={cx('sizeDetail')}
-                                        key={item.size}
-                                    >
-                                        {item.size}
-                                    </div>
-                                )
-                            })}
+                            <select value={size} onChange={(e) => setSize(e.target.value)} style={{width: '100px', marginLeft: '5px'}}>
+                                {detailProduct.size.map((item) => {
+                                    return (
+                                        <option
+                                            className={cx('sizeDetail')}
+                                            key={item.size}
+                                            value={item.size}
+                                        >
+                                            {item.size}
+                                        </option>
+                                    )
+                                })}
+                            </select>
                             {/* <div className={cx('sizeDetail', 'activeSize')}>38</div> */}
                         </div>
                         <div className={cx('actionPro')}>
@@ -134,7 +138,7 @@ function DetailProduct() {
                             <div
                                 className={cx('addToCart')}
                                 onClick={() => {
-                                    handleAddCart(detailProduct, qnt)
+                                    handleAddCart({...detailProduct, size}, qnt)
                                 }}
                             >
                                 Add to Cart

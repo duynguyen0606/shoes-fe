@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import styles from './UserAction.module.css'
 import classnames from 'classnames/bind'
 import { memo } from 'react'
-import { apiDeleteProduct, getListOrderByAdmin } from '../../../api/orderAPI'
+import { apiCancelOrder, getListOrderByUserId } from '../../../api/orderAPI'
 import { formatter } from '../../../utils/tool'
 import { showSuccessToast } from '../../../utils/toastMessage'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useSelector } from 'react-redux'
+import { apiChangePassword } from '../../../api/userAPI'
 
 const cx = classnames.bind(styles)
 
@@ -31,20 +33,25 @@ const stateOrder = [
 function UserAction({ user, changePass, orders, title }) {
     const [currentPage, setCurrentPage] = useState(1)
     const [active, setActive] = useState({ id: 0, value: 'Pending' })
-    const [order, setOrder] = useState([])
+    const [order, setOrder] = useState([]);
+    const currentUser = useSelector((state) => state.user.inforUser)
+    const [password, setPassword] = useState('');
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState('');
     const orderOProStatus = order.filter((item) => item.status === active.id)
     useEffect(() => {
         loadOrders()
     }, [])
     const loadOrders = async () => {
-        const res = await getListOrderByAdmin()
+        const res = await getListOrderByUserId({ id: currentUser.id })
         setOrder([...res.data])
     }
-    const handleCancelOrder = async (o) => {
-        const res = await apiDeleteProduct(o)
+    const handleCancelOrder = async (reqBody) => {
+        const res = await apiCancelOrder(reqBody)
         if (res.data) {
             showSuccessToast('Delete Success', 'Success', 'success')
         }
+        await loadOrders();
     }
     const handleDeCrePage = () => {
         if (currentPage !== 1) {
@@ -55,6 +62,22 @@ function UserAction({ user, changePass, orders, title }) {
         if (currentPage * 2 <= orderOProStatus.length) {
             setCurrentPage(currentPage + 1)
         }
+    }
+
+    const handleChangePassword = async () => {
+        if(confirmPassword !== newPassword) {
+            showSuccessToast("Mật khẩu xác nhận không chính xác!", "Cảnh báo", "error");
+        }else{
+            const res = await apiChangePassword({passwordOld: password, passwordNew: newPassword});
+            if(res.status === 201 ){
+                showSuccessToast("Thay đổi mật khẩu thành công", "Thành công", "success");
+            }else{
+                showSuccessToast("Có lỗi xảy ra, vui lòng thử lại!", "Cảnh báo", "error");
+            }
+        }
+        setTimeout(() => {
+            window.location.replace('/');
+        }, 1000)
     }
     return (
         <div className={cx('wrapper')}>
@@ -75,7 +98,7 @@ function UserAction({ user, changePass, orders, title }) {
                     </div>
                     <div className={cx('userTitle')}>
                         <div className={cx('subUserTitle')}>Phone:</div>
-                        <div>{user.phone}</div>
+                        <div>{user.phoneNumber}</div>
                     </div>
                 </div>
             )}
@@ -83,15 +106,30 @@ function UserAction({ user, changePass, orders, title }) {
                 <div>
                     <div className={cx('passTitle')}>
                         <div className={cx('subPassTitle')}>Current Password </div>
-                        <input className={cx('currentPass')} />
+                        <input type="password" className={cx('currentPass')} 
+                        value={password}
+                        onChange={(e)=> setPassword(e.target.value.trim())}
+                        />
                     </div>
                     <div className={cx('passTitle')}>
                         <div className={cx('subPassTitle')}>New Password </div>
-                        <input className={cx('newPass')} />
+                        <input type="password" className={cx('newPass')} 
+                        value={newPassword}
+                        onChange={(e)=> setNewPassword(e.target.value.trim())}
+                        />
                     </div>
                     <div className={cx('passTitle')}>
                         <div className={cx('subPassTitle')}>Confirm Password </div>
-                        <input className={cx('confirmPass')} />
+                        <input type="password" className={cx('confirmPass')}
+                        value={confirmPassword}
+                        onChange={(e)=> setConfirmPassword(e.target.value.trim())}
+                        />
+                    </div>
+                    <div style={{marginLeft: '70%'}}
+                        className={cx('cancelPro')}
+                        onClick={handleChangePassword}
+                    >
+                        Change
                     </div>
                 </div>
             )}
@@ -117,7 +155,7 @@ function UserAction({ user, changePass, orders, title }) {
                                 key={item._id}
                             >
                                 <div className={cx('proOrders')}>
-                                    {item.products.map((pro) => (
+                                    {item.products.map((pro, index) => (
                                         <div
                                             className={cx('proCnt')}
                                             key={pro._id}
@@ -129,6 +167,7 @@ function UserAction({ user, changePass, orders, title }) {
                                                 />
                                             </div>
                                             <div className={cx('infoPro')}>{pro.name}</div>
+                                            <div className={cx('infoPro')}>Size: {item.size[index]}</div>
                                         </div>
                                     ))}
                                 </div>
@@ -142,7 +181,7 @@ function UserAction({ user, changePass, orders, title }) {
                                             <div
                                                 className={cx('cancelPro')}
                                                 onClick={() => {
-                                                    handleCancelOrder({ ...item, status: 1 })
+                                                    handleCancelOrder({ _id: item._id, data:{status: 1} })
                                                 }}
                                             >
                                                 Cancel

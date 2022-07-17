@@ -41,6 +41,7 @@
 .sizePro {
     display: flex;
     margin: 30px 0;
+    align-items: center;
 }
 
 .sizeTitle {

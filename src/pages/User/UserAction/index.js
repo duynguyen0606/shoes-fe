@@ -158,7 +158,7 @@ function UserAction({ user, changePass, orders, title }) {
                                     {item.products.map((pro, index) => (
                                         <div
                                             className={cx('proCnt')}
-                                            key={pro._id}
+                                            key={index}
                                         >
                                             <div className={cx('imgPro')}>
                                                 <img
@@ -166,8 +166,10 @@ function UserAction({ user, changePass, orders, title }) {
                                                     alt="Anh"
                                                 />
                                             </div>
-                                            <div className={cx('infoPro')}>{pro.name}</div>
-                                            <div className={cx('infoPro')}>Size: {item.size[index]}</div>
+                                            <div>
+                                                <div className={cx('infoPro')}>{pro.name}</div>
+                                                <small>Size: {item.size[index]}     Amount: {item.amount[index]}</small>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

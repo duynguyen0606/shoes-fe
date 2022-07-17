@@ -30,7 +30,8 @@ function Checkout() {
         status: 0,
         address: currentUser.address,
         phoneNumber: currentUser.phoneNumber,
-        size: cart.map(item => item.size)
+        size: cart.map(item => item.size),
+        amount: cart.map(item => item.amount)
     })
     const [infoUserUpdate, setInfoUserUpdate] = useState({
         address: '',

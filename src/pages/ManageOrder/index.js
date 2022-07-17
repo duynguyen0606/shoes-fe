@@ -7,15 +7,34 @@ import styles from './ManageOrder.module.css'
 import { showSuccessToast } from '../../utils/toastMessage'
 import { formatter } from '../../utils/tool'
 
+import { ExportReactCSV } from '../../utils/exportCSV'
 const cx = classNames.bind(styles)
 
-const statusOrder = ['Đang xử lý', 'Đã hủy', 'Giao hàng thành công', 'Đang giao']
+const statusOrder = [
+    {
+        id: 1,
+        cnt: 'Đang xử lý',
+    },
+    {
+        id: 2,
+        cnt: 'Đã hủy',
+    },
+    {
+        id: 3,
+        cnt: 'Đang giao',
+    },
+    {
+        id: 4,
+        cnt: 'Giao thành công',
+    },
+]
 
 const ManageOrder = () => {
     const [listOrders, setListOrders] = useState([])
     const [statusTable, setStatusTable] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
 
+    const [active, setActive] = useState(1)
     useEffect(() => {
         getListOrder()
     }, [])
@@ -42,64 +61,67 @@ const ManageOrder = () => {
         if (currentPage * 4 <= listOrders.filter((item) => item.status === statusTable).length) {
             setCurrentPage(currentPage + 1)
         }
+        
+        getListOrder()
     }
     return (
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '6rem 2rem' }}>
-            <div style={{ width: '100%' }}>
-                <button
-                    style={{
-                        padding: '1rem 2rem',
-                        backgroundColor: 'blue',
-                        width: '200px',
-                        color: '#fff',
-                        cursor: 'pointer',
-                    }}
-                    onClick={() => setStatusTable(0)}
-                >
-                    Đang chờ xử lý
-                </button>
-                <button
-                    style={{
-                        padding: '1rem 2rem',
-                        backgroundColor: 'red',
-                        width: '200px',
-                        color: '#fff',
-                        cursor: 'pointer',
-                    }}
-                    onClick={() => setStatusTable(1)}
-                >
-                    Đã hủy
-                </button>
-                <button
-                    style={{
-                        padding: '1rem 2rem',
-                        backgroundColor: 'yellow',
-                        width: '200px',
-                        color: '#fff',
-                        cursor: 'pointer',
-                    }}
-                    onClick={() => setStatusTable(3)}
-                >
-                    Đang giao
-                </button>
-                <button
-                    style={{
-                        padding: '1rem 2rem',
-                        backgroundColor: 'green',
-                        width: '200px',
-                        color: '#fff',
-                        cursor: 'pointer',
-                    }}
-                    onClick={() => setStatusTable(2)}
-                >
-                    Giao thành công
-                </button>
+            <div className={cx('orderWrapper')}>
+                <div className={cx('btnOrder')}>
+                    <button
+                        className={cx('buttonOrder', 'buttonLeft', active === 0 && 'active')}
+                        onClick={() => {
+                            setStatusTable(0)
+                            setActive(0)
+                        }}
+                    >
+                        Đang chờ xử lý
+                    </button>
+                    <button
+                        className={cx('buttonOrder', active === 1 && 'active')}
+                        onClick={() => {
+                            setStatusTable(1)
+                            setActive(1)
+                        }}
+                    >
+                        Đã hủy
+                    </button>
+                    <button
+                        className={cx('buttonOrder', active === 3 && 'active')}
+                        onClick={() => {
+                            setStatusTable(3)
+                            setActive(3)
+                        }}
+                    >
+                        Đang giao
+                    </button>
+                    <button
+                        className={cx('buttonOrder', 'buttonRight', active === 2 && 'active')}
+                        onClick={() => {
+                            setStatusTable(2)
+                            setActive(2)
+                        }}
+                    >
+                        Giao thành công
+                    </button>
+                </div>
+                <div className={cx('exportCSV')}>
+                    <ExportReactCSV
+                        fileName={`Doanh thu`}
+                        csvData={listOrders.map(item => ({
+                            ...item,
+                            products: JSON.stringify(item.products),
+                            userId: item.userId._id
+                        })).filter((item) => item.status === 2)}
+                    />
+                </div>
             </div>
+
             <table className={cx('tableWrapper')}>
                 <tr>
                     <th>STT</th>
                     <th>Tên khách hàng</th>
-                    <th>Sản phẩm</th>
+                    <th colSpan="1">Sản phẩm</th>
                     <th>Tổng đơn</th>
                     <th>Địa chỉ</th>
                     <th>SĐT khách hàng</th>
@@ -112,7 +134,15 @@ const ManageOrder = () => {
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.userId.name}</td>
-                            <td>{item.products.map((product, index) => `${product.name}-size: ${item.size[index]}`).join(', ')}</td>
+                            <td>
+                                {item.products.map((product, index) => 
+                                    <div>
+                                        <span>{product.name},  </span>
+                                        <span>Size:{item.size[index]},</span>
+                                        <span>Số lượng:{item.amount[index]}</span>
+                                    </div>
+                                )}
+                            </td>
                             <td>{formatter.format(item.totalPrice)}</td>
                             <td>{item.address}</td>
                             <td>{item.phoneNumber}</td>

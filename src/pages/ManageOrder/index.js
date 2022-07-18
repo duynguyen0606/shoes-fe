@@ -123,7 +123,7 @@ const ManageOrder = () => {
                 </div>
             </div>
             <div className={cx('revenue')}>
-                <h2>Doanh Thu: {formatter.format(totalRevenue)}</h2>
+                {statusTable===2&&<h2>Doanh Thu Tháng Này: {formatter.format(totalRevenue)}</h2>}
             </div>
             <table className={cx('tableWrapper')}>
                 <tr>

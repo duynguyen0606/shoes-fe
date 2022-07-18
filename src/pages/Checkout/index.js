@@ -30,8 +30,8 @@ function Checkout() {
         status: 0,
         address: currentUser.address,
         phoneNumber: currentUser.phoneNumber,
-        size: cart.map(item => item.size),
-        amount: cart.map(item => item.amount)
+        size: cart.map((item) => item.size),
+        amount: cart.map((item) => item.amount),
     })
     const [infoUserUpdate, setInfoUserUpdate] = useState({
         address: '',
@@ -48,14 +48,14 @@ function Checkout() {
 
     const handleOrder = async (e) => {
         e.preventDefault()
-        if(cart.length === 0) {
-            showSuccessToast("Vui lòng chọn sản phẩm trước khi thanh toán", "Cảnh báo!", "error");
-        }else{
-            const res = await apiCreateOrder({...infoUser, userId: currentUser.id})
+        if (cart.length === 0) {
+            showSuccessToast('Vui lòng chọn sản phẩm trước khi thanh toán', 'Cảnh báo!', 'error')
+        } else {
+            const res = await apiCreateOrder({ ...infoUser, userId: currentUser.id })
             if (res.data) {
                 showSuccessToast('Order Success', 'Success', 'success')
-                localStorage.removeItem('cart');
-                setTimeout(() =>{
+                localStorage.removeItem('cart')
+                setTimeout(() => {
                     window.location.replace('/')
                 }, 1000)
             }
@@ -68,7 +68,10 @@ function Checkout() {
     // }
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('content')} style={{minHeight: '600px'}}>
+            <div
+                className={cx('content')}
+                style={{ minHeight: '600px' }}
+            >
                 <div className="grid wide">
                     <div className="row">
                         <div className={cx('form', 'c-8')}>
@@ -125,7 +128,8 @@ function Checkout() {
                                                 key={item._id}
                                                 disabled={totalCart < item.condition}
                                             >
-                                                Giảm {item.discount}% áp dụng đối với đơn hàng tối thiểu {formatter.format(item.condition)}đ
+                                                Giảm {item.discount}% áp dụng đối với đơn hàng tối thiểu{' '}
+                                                {formatter.format(item.condition)}đ
                                             </option>
                                         ))}
                                     </select>
@@ -160,7 +164,7 @@ function Checkout() {
                                 ))}
                             </div>
                             <div className={cx('vouc')}>
-                                <div className={cx('voucTitle')}>Voucher {vouc ===0 ?"":`${vouc}%`}</div>
+                                <div className={cx('voucTitle')}>Voucher {vouc === 0 ? '' : `${vouc}%`}</div>
                                 <div className={cx('vouncValue')}>{formatter.format(totalCart * vouc * 0.01)}</div>
                             </div>
                             <div className={cx('totalCart')}>

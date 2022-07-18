@@ -33,7 +33,11 @@ const ManageOrder = () => {
     const [listOrders, setListOrders] = useState([])
     const [statusTable, setStatusTable] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
-
+    const totalRevenue = listOrders
+        .filter((item) => item.status === 2)
+        .reduce((pre, cur) => {
+            return pre + cur.totalPrice
+        }, 0)
     const [active, setActive] = useState(1)
     useEffect(() => {
         getListOrder()
@@ -61,7 +65,7 @@ const ManageOrder = () => {
         if (currentPage * 4 <= listOrders.filter((item) => item.status === statusTable).length) {
             setCurrentPage(currentPage + 1)
         }
-        
+
         getListOrder()
     }
     return (
@@ -108,15 +112,19 @@ const ManageOrder = () => {
                 <div className={cx('exportCSV')}>
                     <ExportReactCSV
                         fileName={`Doanh thu`}
-                        csvData={listOrders.map(item => ({
-                            ...item,
-                            products: JSON.stringify(item.products),
-                            userId: item.userId._id
-                        })).filter((item) => item.status === 2)}
+                        csvData={listOrders
+                            .map((item) => ({
+                                ...item,
+                                products: JSON.stringify(item.products),
+                                userId: item.userId._id,
+                            }))
+                            .filter((item) => item.status === 2)}
                     />
                 </div>
             </div>
-
+            <div className={cx('revenue')}>
+                <h2>Doanh Thu: {formatter.format(totalRevenue)}</h2>
+            </div>
             <table className={cx('tableWrapper')}>
                 <tr>
                     <th>STT</th>
@@ -135,13 +143,13 @@ const ManageOrder = () => {
                             <td>{index + 1}</td>
                             <td>{item.userId.name}</td>
                             <td>
-                                {item.products.map((product, index) => 
+                                {item.products.map((product, index) => (
                                     <div>
-                                        <span>{product.name},  </span>
+                                        <span>{product.name}, </span>
                                         <span>Size:{item.size[index]},</span>
                                         <span>Số lượng:{item.amount[index]}</span>
                                     </div>
-                                )}
+                                ))}
                             </td>
                             <td>{formatter.format(item.totalPrice)}</td>
                             <td>{item.address}</td>
@@ -154,10 +162,30 @@ const ManageOrder = () => {
                                         handleChangeStatusOrder({ _id: item._id, data: { status: e.target.value } })
                                     }
                                 >
-                                    <option value={0}>Đang xử lý</option>
-                                    <option value={1}>Đã hủy</option>
-                                    <option value={2}>Đã giao</option>
-                                    <option value={3}>Đang giao</option>
+                                    <option
+                                        value={0}
+                                        disabled={statusTable === 0}
+                                    >
+                                        Đang xử lý
+                                    </option>
+                                    <option
+                                        value={1}
+                                        disabled={statusTable === 1}
+                                    >
+                                        Đã hủy
+                                    </option>
+                                    <option
+                                        value={2}
+                                        disabled={statusTable === 2}
+                                    >
+                                        Đã giao
+                                    </option>
+                                    <option
+                                        value={3}
+                                        disabled={statusOrder === 3}
+                                    >
+                                        Đang giao
+                                    </option>
                                 </select>
                             </td>
                         </tr>

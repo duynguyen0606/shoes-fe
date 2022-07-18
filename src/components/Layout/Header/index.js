@@ -18,18 +18,6 @@ import { deleteProductInCart } from '../../../features/cart/cartSlice'
 import { useNavigate } from 'react-router'
 
 const cx = classNames.bind(styles)
-const namePage = [
-    {
-        id: 1,
-        content: 'Home',
-        link: '/',
-    },
-    {
-        id: 2,
-        content: 'Product',
-        link: '/product',
-    },
-]
 function Header() {
     const dispatch = useDispatch()
     const [isFixed, setIsFixed] = useState(false)
@@ -40,7 +28,6 @@ function Header() {
     const producList = useSelector((state) => state.products.products)
     const cart = useSelector((state) => state.cart.products || [])
     const [selectCartItem, setSelectCartItem] = useState({})
-    const [active, setActive] = useState({ id: 1, content: 'Home', link: '/' })
     const navigation = useNavigate()
     const totalPriceCart = cart.reduce((pre, cur) => {
         return pre + cur.amount * cur.price
@@ -57,7 +44,7 @@ function Header() {
     }
     const handleLogout = () => {
         localStorage.removeItem('accessToken')
-        window.location.replace('/');
+        window.location.replace('/')
     }
     const handleOCCart = () => {
         setIsOCCart(!isOCCart)
@@ -270,7 +257,67 @@ function Header() {
                                                         icon={faXmark}
                                                     />
                                                 </div>
-                                                <div className={cx('menuContent')}>Heleo</div>
+                                                <div className={cx('menuContent')}>
+                                                    <div className={cx('searchMobile')}>
+                                                        <input
+                                                            className={cx('inputMobile')}
+                                                            placeholder="Search product..."
+                                                            type="text"
+                                                            spellCheck={false}
+                                                            onChange={(e) => {
+                                                                handleInputSearch(e.target.value)
+                                                            }}
+                                                            onFocus={(e) => {
+                                                                handleInputSearch(e.target.value)
+                                                            }}
+                                                            onBlur={(e) => {
+                                                                setTimeout(() => {
+                                                                    setSearchResult([])
+                                                                }, 500)
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className={cx('search-result')}>
+                                                        {searchResult.length > 0 &&
+                                                            searchResult.map((item) => {
+                                                                return (
+                                                                    <Link
+                                                                        to={`/detail/${item._id}`}
+                                                                        key={item._id}
+                                                                    >
+                                                                        <div
+                                                                            style={{
+                                                                                display: 'flex',
+                                                                                backgroundColor: '#fff',
+                                                                                padding: '10px',
+                                                                                borderBottom: '1px #ccc solid',
+                                                                            }}
+                                                                        >
+                                                                            <div style={{ width: '90px' }}>
+                                                                                <img
+                                                                                    src={item.linkImg[0]}
+                                                                                    alt={item.name}
+                                                                                />
+                                                                            </div>
+                                                                            <div style={{ padding: '10px' }}>
+                                                                                <div>{item.name}</div>
+                                                                                <span>{item.price}đ</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </Link>
+                                                                )
+                                                            })}
+                                                    </div>
+                                                    <div className={cx('productMobile')}>
+                                                        <Link to="/product">Product</Link>
+                                                    </div>
+                                                    <div
+                                                        className={cx('logoutMobile')}
+                                                        onClick={handleLogout}
+                                                    >
+                                                        Log out
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -315,7 +362,7 @@ function Header() {
                                                 <div className={cx('qnt')}>{item.amount}</div>
                                                 <div>x</div>
                                                 <div className={cx('price')}>{formatter.format(item.price)}</div>
-                                                <div style={{marginLeft: '2rem'}}>Size: {item.size}</div>
+                                                <div style={{ marginLeft: '2rem' }}>Size: {item.size}</div>
                                             </div>
                                         </div>
                                         <div

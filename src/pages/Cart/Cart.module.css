@@ -89,8 +89,7 @@
     display: flex;
     border: 1px solid var(--primary);
     border-radius: 20px;
-    transform: translateX(36%);
-    width: 58%;
+    justify-content: space-around;
 }
 .qntTitle {
     font-weight: 700;
@@ -129,4 +128,12 @@
     font-size: 2rem;
     color: var(--primary);
     font-weight: 700;
+}
+@media (max-width: 1024px) {
+    .contShop,
+    .clearCart {
+        margin-top: 10px;
+        width: 32%;
+        margin-bottom: 10px;
+    }
 }

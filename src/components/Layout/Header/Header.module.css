@@ -396,4 +396,25 @@
         background-color: var(--white);
         padding: 50px 20px;
     }
+    .searchMobile {
+        margin-bottom: 20px;
+    }
+    .inputMobile {
+        width: 100%;
+        border: 1px solid #f1f1f1;
+        border-radius: 4px;
+        padding: 8px 4px;
+        font-size: 1.6rem;
+    }
+    .inputMobile:focus {
+        border: 1px solid #ccc;
+    }
+    .productMobile,
+    .logoutMobile {
+        padding: 8px 0;
+    }
+    .productMobile:active,
+    .logoutMobile:active {
+        color: var(--primary);
+    }
 }

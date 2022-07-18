@@ -23,7 +23,8 @@ function DetailProduct() {
     const [feedbacks, setFeedbacks] = useState([])
     const [newFeedback, setNewFeedback] = useState('')
     const [size, setSize] = useState(detailProduct.size[0].size)
-
+    const [imgPro, setImgPro] = useState(detailProduct.linkImg[0])
+    const [active, setActive] = useState(0)
     useEffect(() => {
         loadFeedback()
     }, [])
@@ -75,23 +76,26 @@ function DetailProduct() {
                     <div className={cx('imgPro', 'col', 'c-6')}>
                         <div className={cx('mainImg')}>
                             <img
-                                src={detailProduct.linkImg[0]}
+                                src={imgPro}
                                 alt="anh"
                             />
                         </div>
                         <div className={cx('otherImg', 'row')}>
-                            <div className={cx('img1', 'col', 'c-3')}>
-                                <img
-                                    src={detailProduct.linkImg[1]}
-                                    alt="anh"
-                                />
-                            </div>
-                            <div className={cx('img2', 'col', 'c-3')}>
-                                <img
-                                    src={detailProduct.linkImg[0]}
-                                    alt="anh"
-                                />
-                            </div>
+                            {detailProduct.linkImg.map((imgItem, index) => (
+                                <div
+                                    key={index}
+                                    className={cx('img1', 'col', 'c-3', active === index && 'active')}
+                                    onClick={() => {
+                                        setActive(index)
+                                        setImgPro(imgItem)
+                                    }}
+                                >
+                                    <img
+                                        src={imgItem}
+                                        alt="anh"
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className={cx('imgDetail', 'col', 'c-6')}>
@@ -164,6 +168,7 @@ function DetailProduct() {
                         />
                         <button
                             style={{
+                                color: '#fff',
                                 padding: '1rem 2rem',
                                 margin: '8px 0 8px 2rem',
                                 backgroundColor: '#d8355a',

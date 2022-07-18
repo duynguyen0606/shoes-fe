@@ -24,7 +24,7 @@ function Footer() {
     return (
         <div className={cx('wrapper')}>
             <div className="grid wide">
-                <div className={cx('content', 'row')}>
+                <div className={cx('content', 'row', 'noGutters')}>
                     <div className={cx('logoDesc', 'l-3', 'col', 'm-6', 'c-6')}>
                         <div className={cx('logo')}>
                             <Link to="/">

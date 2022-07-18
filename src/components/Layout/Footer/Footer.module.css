@@ -57,3 +57,11 @@
 .insta {
     color: #d84178;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}

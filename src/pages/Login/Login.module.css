@@ -10,8 +10,6 @@
 .formContainer {
     border-radius: 20px;
     background: none 0px 0px repeat scroll #fff;
-
-
     padding: 40px;
 }
 
@@ -62,4 +60,11 @@
 a {
     color: rgb(75, 255, 3);
 
+}
+
+/* Responsive */
+@media (max-width: 768px) { 
+    .formContainer {
+        padding: 20px;
+    }
 }

@@ -23,6 +23,8 @@
 .wrapperBottom.sticky {
     position: fixed;
     top: 0;
+    right: 0;
+    left: 0;
     width: 100%;
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px;
@@ -333,7 +335,12 @@
     font-weight: 600;
     padding: 20px 0;
 }
+.showSearch {
+    padding: 8px;
+}
+
 /* Responsive */
+/* Tablet */
 @media (min-width: 1024px) {
     .mobileVersion {
         display: none;
@@ -359,7 +366,11 @@
     .mainLeft {
         width: 40%;
     }
+    .mainRight {
+        height: 88px;
+    }
     .mobileVersion {
+        position: relative;
         cursor: pointer;
         padding: 20px 10px;
     }
@@ -416,5 +427,28 @@
     .productMobile:active,
     .logoutMobile:active {
         color: var(--primary);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hideOnMobile {
+        display: none;
+    }
+    .menuWrapper {
+        width: 70%;
+    }
+    .content {
+        position: relative;
+        width: 100%;
+    }
+    .iconMobile {
+        display: block;
+    }
+    .search-result {
+        width: 90%;
+    }
+    .mainRight {
+        height: 88px;
     }
 }

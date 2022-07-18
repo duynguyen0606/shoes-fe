@@ -105,7 +105,7 @@
     color: var(--black);
     text-align: center;
     border: 1px solid var(--primary);
-    width: 30%;
+    width: 38%;
     margin-top: 30px;
     padding: 15px 30px;
     border-radius: 10px;
@@ -154,9 +154,21 @@
 /* Responsive */
 @media (max-width: 1024px) {
     .addToCart {
-        width: 50%;
+        width: 65%;
     }
     .addToCart:hover {
-        width: 58%;
+        width: 72%;
+    }
+}
+/* Mobile */
+@media (max-width: 768px) {
+    .addToCart {
+        width: 65%;
+    }
+    .addToCart:hover {
+        width: 72%;
+    }
+    .imgDetail {
+        padding-left: 20px !important;
     }
 }

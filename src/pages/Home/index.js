@@ -44,7 +44,7 @@ function Home() {
                 </div>
             </div>
             <div className="grid wide">
-                <div className={cx('endow', 'row')}>
+                <div className={cx('endow', 'row', 'noGutters')}>
                     {endow.map((item, index) => (
                         <div
                             key={index}
@@ -58,20 +58,20 @@ function Home() {
                         </div>
                     ))}
                 </div>
-                <div className={cx('sale', 'row')}>
-                    <div className={cx('saleItem', 'c-3')}>
+                <div className={cx('sale', 'row', 'noGutters')}>
+                    <div className={cx('saleItem', 'm-3', 'c-12')}>
                         <img
                             src="https://cdn.shopify.com/s/files/1/0265/2146/8985/files/banner_1_360x.png?v=1652776990"
                             alt="Sale"
                         />
                     </div>
-                    <div className={cx('saleItem', 'c-6')}>
+                    <div className={cx('saleItem', 'm-6', 'c-12')}>
                         <img
                             src="https://cdn.shopify.com/s/files/1/0265/2146/8985/files/Yellow_White_Minimalist_Modern_New_Arrivals_Shoes_Banner_855_x_525_px_720x.png?v=1652777310"
                             alt="Sale"
                         />
                     </div>
-                    <div className={cx('saleItem', 'c-3')}>
+                    <div className={cx('saleItem', 'm-3', 'c-12')}>
                         <img
                             src="https://cdn.shopify.com/s/files/1/0265/2146/8985/files/banner_2_360x.png?v=1652777031"
                             alt="Sale"

@@ -114,3 +114,18 @@
     display: flex;
     margin-top: 50px;
 }
+
+/* Responsive */
+/* Mobile */
+@media (max-width: 768px) {
+    .title {
+        font-size: 60px;
+    }
+    .desc {
+        font-size: 26px;
+    }
+    .sale {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

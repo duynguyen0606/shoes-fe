@@ -722,8 +722,8 @@ img {
     background-color: #fff;
     border-radius: 2px;
     padding: 20px 0;
-    min-width: 400px;
-    max-width: 500px;
+    min-width: 140%;
+    max-width: 150%;
     border-left: 4px solid;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
     transition: all linear 0.3s;

@@ -32,3 +32,13 @@
 .active {
     color: var(--primary);
 }
+
+@media (max-width: 768px) {
+    .content {
+        padding: 0;
+        margin-top: 50px;
+    }
+    .contentView {
+        padding: 10px;
+    }
+}

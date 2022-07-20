@@ -150,3 +150,9 @@
 .pagePro {
     margin-right: 5px;
 }
+
+@media (max-width: 768px) {
+    .subUserTitle {
+        width: 69px;
+    }
+}

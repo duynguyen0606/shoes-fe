@@ -13,6 +13,7 @@ function Cart() {
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart.products)
     const [selectCartItem, setSelectCartItem] = useState({})
+    const [qnt, setQnt] = useState(1)
     const totalCart = cart.reduce((pre, cur) => {
         return pre + cur.amount * cur.price
     }, 0)
@@ -21,10 +22,17 @@ function Cart() {
         setSelectCartItem(product)
         dispatch(deleteProductInCart(product))
     }
-    const handleAddOrDecreaseQntItem = (product, isAdd) => {
-        const productNew = { ...product, amount: isAdd ? 1 : -1 }
-        setSelectCartItem(productNew)
-        dispatch(updateCart(productNew))
+    const handleAddOrDecreaseQntItem = (product, isAdd, qntPro) => {
+        if (qntPro > 0) {
+            const productNew = { ...product, amount: isAdd ? 1 : -1 }
+            if (isAdd) {
+                setQnt(qnt + 1)
+            } else {
+                setQnt(qnt - 1)
+            }
+            setSelectCartItem(productNew)
+            dispatch(updateCart(productNew))
+        }
     }
     return (
         <div className={cx('wrapper')}>
@@ -45,11 +53,8 @@ function Cart() {
                             </thead>
                             <tbody>
                                 {cart.map((item) => (
-                                    <tr>
-                                        <td
-                                            className={cx('proImg')}
-                                            key={item._id}
-                                        >
+                                    <tr key={item._id}>
+                                        <td className={cx('proImg')}>
                                             <img
                                                 src={item.linkImg[0]}
                                                 alt="Nike"
@@ -65,7 +70,7 @@ function Cart() {
                                                 <div
                                                     className={cx('qntDecre')}
                                                     onClick={() => {
-                                                        handleAddOrDecreaseQntItem(item, false)
+                                                        handleAddOrDecreaseQntItem(item, false, qnt)
                                                     }}
                                                 >
                                                     -
@@ -74,7 +79,7 @@ function Cart() {
                                                 <div
                                                     className={cx('qntIncre')}
                                                     onClick={() => {
-                                                        handleAddOrDecreaseQntItem(item, true)
+                                                        handleAddOrDecreaseQntItem(item, true, qnt)
                                                     }}
                                                 >
                                                     +
@@ -104,7 +109,6 @@ function Cart() {
                 <div className={cx('actionCart')}>
                     {cart.length > 0 ? (
                         <>
-                            {' '}
                             <Link
                                 to="/product"
                                 className={cx('contShop')}

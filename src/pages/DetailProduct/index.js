@@ -31,7 +31,6 @@ function DetailProduct() {
 
     const loadFeedback = async () => {
         const res = await getAllFeedbackByProApi({ productId: param.id })
-        console.log(res)
         setFeedbacks(res.data)
     }
 
@@ -72,8 +71,8 @@ function DetailProduct() {
                 className="grid wide"
                 style={{ minHeight: '500px' }}
             >
-                <div className={cx('contentPro', 'row')}>
-                    <div className={cx('imgPro', 'col', 'c-6')}>
+                <div className={cx('contentPro', 'row', 'noGutters')}>
+                    <div className={cx('imgPro', 'col', 'm-6', 'c-12')}>
                         <div className={cx('mainImg')}>
                             <img
                                 src={imgPro}
@@ -98,7 +97,7 @@ function DetailProduct() {
                             ))}
                         </div>
                     </div>
-                    <div className={cx('imgDetail', 'col', 'c-6')}>
+                    <div className={cx('imgDetail', 'col', 'm-6', 'c-12')}>
                         <div className={cx('namePro')}>{detailProduct.name}</div>
                         <div className={cx('codePro')}>SKU: 1110</div>
                         <div className={cx('pricePro')}>{formatter.format(detailProduct.price)}</div>

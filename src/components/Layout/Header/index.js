@@ -23,6 +23,7 @@ function Header() {
     const [isFixed, setIsFixed] = useState(false)
     const [isOCCart, setIsOCCart] = useState(false)
     const [isOCMenu, setIsOCMenu] = useState(false)
+    const [showResult, setShowResult] = useState(false)
     const [searchResult, setSearchResult] = useState([])
     const userInfor = useSelector((state) => state.user)
     const producList = useSelector((state) => state.products.products)
@@ -34,6 +35,9 @@ function Header() {
     }, 0)
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
     }, [])
     const handleScroll = (event) => {
         if (event.wheelDelta < 0 || window.scrollY === 0) {
@@ -56,8 +60,10 @@ function Header() {
         const data = producList.filter((item) => item.name.includes(value))
         if (value.length === 0) {
             setSearchResult([])
+            setShowResult(false)
         } else {
             setSearchResult(data)
+            setShowResult(true)
         }
     }
 
@@ -65,6 +71,7 @@ function Header() {
         setSelectCartItem(product)
         dispatch(deleteProductInCart(product))
     }
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
@@ -168,6 +175,7 @@ function Header() {
                                                     onBlur={(e) => {
                                                         setTimeout(() => {
                                                             setSearchResult([])
+                                                            setShowResult(false)
                                                         }, 500)
                                                     }}
                                                     style={{ margin: 0 }}
@@ -176,37 +184,42 @@ function Header() {
                                                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                                                 </div>
                                             </form>
-                                            <div className={cx('search-result')}>
-                                                {searchResult.length > 0 &&
-                                                    searchResult.map((item) => {
-                                                        return (
-                                                            <Link
-                                                                to={`/detail/${item._id}`}
-                                                                key={item._id}
-                                                            >
-                                                                <div
-                                                                    style={{
-                                                                        display: 'flex',
-                                                                        backgroundColor: '#fff',
-                                                                        padding: '10px',
-                                                                        borderBottom: '1px #ccc solid',
-                                                                    }}
+                                            {showResult && (
+                                                <div className={cx('search-result')}>
+                                                    {searchResult.length > 0 ? (
+                                                        searchResult.map((item) => {
+                                                            return (
+                                                                <Link
+                                                                    to={`/detail/${item._id}`}
+                                                                    key={item._id}
                                                                 >
-                                                                    <div style={{ width: '90px' }}>
-                                                                        <img
-                                                                            src={item.linkImg[0]}
-                                                                            alt={item.name}
-                                                                        />
+                                                                    <div
+                                                                        style={{
+                                                                            display: 'flex',
+                                                                            backgroundColor: '#fff',
+                                                                            padding: '10px',
+                                                                            borderBottom: '1px #ccc solid',
+                                                                        }}
+                                                                    >
+                                                                        <div style={{ width: '90px' }}>
+                                                                            <img
+                                                                                src={item.linkImg[0]}
+                                                                                alt={item.name}
+                                                                            />
+                                                                        </div>
+                                                                        <div style={{ padding: '10px' }}>
+                                                                            <div>{item.name}</div>
+                                                                            <span>{item.price}đ</span>
+                                                                        </div>
                                                                     </div>
-                                                                    <div style={{ padding: '10px' }}>
-                                                                        <div>{item.name}</div>
-                                                                        <span>{item.price}đ</span>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        )
-                                                    })}
-                                            </div>
+                                                                </Link>
+                                                            )
+                                                        })
+                                                    ) : (
+                                                        <div className={cx('showSearch')}>Không tìm thấy sản phẩm</div>
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
 
                                         {userInfor.isLogin ? (
@@ -273,50 +286,60 @@ function Header() {
                                                             onBlur={(e) => {
                                                                 setTimeout(() => {
                                                                     setSearchResult([])
+                                                                    setShowResult(false)
                                                                 }, 500)
                                                             }}
                                                         />
                                                     </div>
-                                                    <div className={cx('search-result')}>
-                                                        {searchResult.length > 0 &&
-                                                            searchResult.map((item) => {
-                                                                return (
-                                                                    <Link
-                                                                        to={`/detail/${item._id}`}
-                                                                        key={item._id}
-                                                                    >
-                                                                        <div
-                                                                            style={{
-                                                                                display: 'flex',
-                                                                                backgroundColor: '#fff',
-                                                                                padding: '10px',
-                                                                                borderBottom: '1px #ccc solid',
-                                                                            }}
+                                                    {showResult && (
+                                                        <div className={cx('search-result')}>
+                                                            {searchResult.length > 0 ? (
+                                                                searchResult.map((item) => {
+                                                                    return (
+                                                                        <Link
+                                                                            to={`/detail/${item._id}`}
+                                                                            key={item._id}
                                                                         >
-                                                                            <div style={{ width: '90px' }}>
-                                                                                <img
-                                                                                    src={item.linkImg[0]}
-                                                                                    alt={item.name}
-                                                                                />
+                                                                            <div
+                                                                                style={{
+                                                                                    display: 'flex',
+                                                                                    backgroundColor: '#fff',
+                                                                                    padding: '10px',
+                                                                                    borderBottom: '1px #ccc solid',
+                                                                                }}
+                                                                            >
+                                                                                <div style={{ width: '90px' }}>
+                                                                                    <img
+                                                                                        src={item.linkImg[0]}
+                                                                                        alt={item.name}
+                                                                                    />
+                                                                                </div>
+                                                                                <div style={{ padding: '10px' }}>
+                                                                                    <div>{item.name}</div>
+                                                                                    <span>{item.price}đ</span>
+                                                                                </div>
                                                                             </div>
-                                                                            <div style={{ padding: '10px' }}>
-                                                                                <div>{item.name}</div>
-                                                                                <span>{item.price}đ</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </Link>
-                                                                )
-                                                            })}
-                                                    </div>
+                                                                        </Link>
+                                                                    )
+                                                                })
+                                                            ) : (
+                                                                <div className={cx('showSearch')}>
+                                                                    Không tìm thấy sản phẩm
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    )}
                                                     <div className={cx('productMobile')}>
                                                         <Link to="/product">Product</Link>
                                                     </div>
-                                                    <div
-                                                        className={cx('logoutMobile')}
-                                                        onClick={handleLogout}
-                                                    >
-                                                        Log out
-                                                    </div>
+                                                    {userInfor.isLogin && (
+                                                        <div
+                                                            className={cx('logoutMobile')}
+                                                            onClick={handleLogout}
+                                                        >
+                                                            Log out
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -362,7 +385,7 @@ function Header() {
                                                 <div className={cx('qnt')}>{item.amount}</div>
                                                 <div>x</div>
                                                 <div className={cx('price')}>{formatter.format(item.price)}</div>
-                                                <div style={{ marginLeft: '2rem' }}>Size: {item.size}</div>
+                                                <div style={{ marginLeft: '1rem' }}>Size: {item.size}</div>
                                             </div>
                                         </div>
                                         <div

@@ -61,11 +61,6 @@ function Checkout() {
             }
         }
     }
-    // const handleUpdateProfile = async (e) => {
-    //     e.preventDefault()
-    //     const res = await apiUpdateProfile(infoUserUpdate)
-    //     dispatch(updateProfile(res.data))
-    // }
     return (
         <div className={cx('wrapper')}>
             <div
@@ -73,14 +68,13 @@ function Checkout() {
                 style={{ minHeight: '600px' }}
             >
                 <div className="grid wide">
-                    <div className="row">
-                        <div className={cx('form', 'c-8')}>
+                    <div className="row noGutters">
+                        <div className={cx('form', 'm-8', 'c-12', 'col')}>
                             <div className={cx('formTitle')}>Checkout</div>
                             <form
                                 className={cx('formContent')}
                                 onSubmit={(e) => {
                                     handleOrder(e)
-                                    // handleUpdateProfile(e)
                                 }}
                             >
                                 <div className={cx('inputUserType')}>
@@ -141,7 +135,7 @@ function Checkout() {
                                 />
                             </form>
                         </div>
-                        <div className={cx('cart', 'c-4')}>
+                        <div className={cx('cart', 'm-4', 'c-12', 'col')}>
                             <div className={cx('cartTitle')}>Your Cart</div>
                             <div className={cx('cartList')}>
                                 {cart.map((item) => (

@@ -27,10 +27,10 @@ function User() {
     return (
         <div className={cx('wrapper')}>
             <div className="grid wide">
-                <div className="row">
+                <div className="row noGutters">
                     {userInfor.isLogin ? (
                         <>
-                            <aside className={cx('sideBar', 'c-3')}>
+                            <aside className={cx('sideBar', 'm-3', 'c-12')}>
                                 <div className={cx('account')}>My Account</div>
                                 {userFeatures.map((item) => (
                                     <div
@@ -44,7 +44,7 @@ function User() {
                                     </div>
                                 ))}
                             </aside>
-                            <div className={cx('content', 'c-9')}>
+                            <div className={cx('content', 'm-9', 'c-12')}>
                                 <div className={cx('contentView')}>
                                     <UserAction
                                         title={active.title}

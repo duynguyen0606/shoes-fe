@@ -1,8 +1,12 @@
 import classNames from 'classnames/bind'
 import React, { useEffect, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { getListOrderByAdmin, updateStatusOrderApi } from '../../api/orderAPI'
 import styles from './ManageOrder.module.css'
 import { showSuccessToast } from '../../utils/toastMessage'
+import { formatter } from '../../utils/tool'
+
 import { ExportReactCSV } from '../../utils/exportCSV'
 const cx = classNames.bind(styles)
 
@@ -28,6 +32,12 @@ const statusOrder = [
 const ManageOrder = () => {
     const [listOrders, setListOrders] = useState([])
     const [statusTable, setStatusTable] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
+    const totalRevenue = listOrders
+        .filter((item) => item.status === 2)
+        .reduce((pre, cur) => {
+            return pre + cur.totalPrice
+        }, 0)
     const [active, setActive] = useState(1)
     useEffect(() => {
         getListOrder()
@@ -46,7 +56,18 @@ const ManageOrder = () => {
         }
         getListOrder()
     }
+    const handleDeCrePage = () => {
+        if (currentPage !== 1) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleInCrePage = () => {
+        if (currentPage * 4 <= listOrders.filter((item) => item.status === statusTable).length) {
+            setCurrentPage(currentPage + 1)
+        }
 
+        getListOrder()
+    }
     return (
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '6rem 2rem' }}>
             <div className={cx('orderWrapper')}>
@@ -91,16 +112,24 @@ const ManageOrder = () => {
                 <div className={cx('exportCSV')}>
                     <ExportReactCSV
                         fileName={`Doanh thu`}
-                        csvData={listOrders.filter((item) => item.status === 2)}
+                        csvData={listOrders
+                            .map((item) => ({
+                                ...item,
+                                products: JSON.stringify(item.products),
+                                userId: item.userId._id,
+                            }))
+                            .filter((item) => item.status === 2)}
                     />
                 </div>
             </div>
-
-            <table>
+            <div className={cx('revenue')}>
+                {statusTable===2&&<h2>Doanh Thu Tháng Này: {formatter.format(totalRevenue)}</h2>}
+            </div>
+            <table className={cx('tableWrapper')}>
                 <tr>
                     <th>STT</th>
                     <th>Tên khách hàng</th>
-                    <th>Sản phẩm</th>
+                    <th colSpan="1">Sản phẩm</th>
                     <th>Tổng đơn</th>
                     <th>Địa chỉ</th>
                     <th>SĐT khách hàng</th>
@@ -108,12 +137,21 @@ const ManageOrder = () => {
                 </tr>
                 {listOrders
                     .filter((item) => item.status === statusTable)
+                    .slice(4 * (currentPage - 1), 4 * currentPage)
                     .map((item, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.userId.name}</td>
-                            <td>{item.products.map((product) => product.name).join(', ')}</td>
-                            <td>{item.totalPrice}</td>
+                            <td>
+                                {item.products.map((product, index) => (
+                                    <div>
+                                        <span>{product.name}, </span>
+                                        <span>Size:{item.size[index]},</span>
+                                        <span>Số lượng:{item.amount[index]}</span>
+                                    </div>
+                                ))}
+                            </td>
+                            <td>{formatter.format(item.totalPrice)}</td>
                             <td>{item.address}</td>
                             <td>{item.phoneNumber}</td>
                             <td>
@@ -121,18 +159,53 @@ const ManageOrder = () => {
                                     style={{ width: '200px' }}
                                     value={item.status}
                                     onChange={(e) =>
-                                        handleChangeStatusOrder({ id: item._id, data: { status: e.target.value } })
+                                        handleChangeStatusOrder({ _id: item._id, data: { status: e.target.value } })
                                     }
                                 >
-                                    <option value={0}>Đang xử lý</option>
-                                    <option value={1}>Đã hủy</option>
-                                    <option value={2}>Đã giao</option>
-                                    <option value={3}>Đang giao</option>
+                                    <option
+                                        value={0}
+                                        disabled={statusTable === 0}
+                                    >
+                                        Đang xử lý
+                                    </option>
+                                    <option
+                                        value={1}
+                                        disabled={statusTable === 1}
+                                    >
+                                        Đã hủy
+                                    </option>
+                                    <option
+                                        value={2}
+                                        disabled={statusTable === 2}
+                                    >
+                                        Đã giao
+                                    </option>
+                                    <option
+                                        value={3}
+                                        disabled={statusOrder === 3}
+                                    >
+                                        Đang giao
+                                    </option>
                                 </select>
                             </td>
                         </tr>
                     ))}
             </table>
+            <div className={cx('changePage')}>
+                <div
+                    className={cx('preBtn')}
+                    onClick={handleDeCrePage}
+                >
+                    <FontAwesomeIcon icon={faAngleLeft} />
+                </div>
+                <div className={cx('pagePro')}>{currentPage}</div>
+                <div
+                    className={cx('nextBtn')}
+                    onClick={handleInCrePage}
+                >
+                    <FontAwesomeIcon icon={faAngleRight} />
+                </div>
+            </div>
         </div>
     )
 }

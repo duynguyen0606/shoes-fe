@@ -8,7 +8,7 @@ const initialState = {
         address: '',
         phone: '',
         purchaseHistory: [],
-        role: 0
+        role: 0,
     },
 }
 const userSlice = createSlice({
@@ -23,9 +23,13 @@ const userSlice = createSlice({
             state.isLogin = false
             state.inforUser = {}
         },
+        updateProfile: (state, action) => {
+            state.inforUser.address = action.payload.address
+            state.inforUser.phone = action.payload.phoneNumber
+        },
     },
 })
 
-export const { loginSuccess, logout } = userSlice.actions
+export const { loginSuccess, logout, updateProfile } = userSlice.actions
 
 export default userSlice.reducer

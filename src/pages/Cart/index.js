@@ -6,13 +6,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { formatter } from '../../utils/tool'
-import { deleteProductInCart, updateCart } from '../../features/cart/cartSlice'
+import { clearCart, deleteProductInCart, updateCart } from '../../features/cart/cartSlice'
 import Navbar from '../../components/Navbar'
 const cx = classNames.bind(styles)
 function Cart() {
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart.products)
     const [selectCartItem, setSelectCartItem] = useState({})
+    const totalCart = cart.reduce((pre, cur) => {
+        return pre + cur.amount * cur.price
+    }, 0)
+
     const handleRemoveCart = (product) => {
         setSelectCartItem(product)
         dispatch(deleteProductInCart(product))
@@ -53,7 +57,7 @@ function Cart() {
                                         </td>
                                         <td className={cx('proDetail')}>
                                             <div className={cx('proName')}>{item.name}</div>
-                                            <div className={cx('proSize')}>Size: {item.size[0].size}</div>
+                                            <div className={cx('proSize')}>Size: {item.size}</div>
                                         </td>
                                         <td className={cx('proPrice')}>{formatter.format(item.price)}</td>
                                         <td className={cx('proQnt')}>
@@ -102,12 +106,25 @@ function Cart() {
                         <>
                             {' '}
                             <Link
-                                to="/checkout"
+                                to="/product"
                                 className={cx('contShop')}
                             >
                                 Continue Shopping
                             </Link>
-                            <div className={cx('clearCart')}>Clear Cart</div>
+                            <div
+                                className={cx('clearCart')}
+                                onClick={() => {
+                                    dispatch(clearCart())
+                                }}
+                            >
+                                Clear Cart
+                            </div>
+                            <Link
+                                to="/checkout"
+                                className={cx('contShop')}
+                            >
+                                Checkout
+                            </Link>
                         </>
                     ) : (
                         <Link
@@ -117,6 +134,10 @@ function Cart() {
                             Back To Product
                         </Link>
                     )}
+                </div>
+                <div className={cx('totalCart')}>
+                    Total:
+                    <span> {formatter.format(totalCart > 0 ? totalCart : 0)}</span>
                 </div>
             </div>
         </div>

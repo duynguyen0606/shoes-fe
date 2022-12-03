@@ -8,21 +8,21 @@ const cx = classNames.bind(styles)
 function Item({ product }) {
     return (
         <div className={cx('wrapper')}>
-            <Link to={`/detail/${product._id}`}>
+            <Link to={`/detail/${product?._id}`}>
                 <div className={cx('imgPro')}>
                     <img
                         className={cx('imgChange')}
-                        src={product.linkImg[0]}
+                        src={product?.linkImg[0]}
                         alt="Nike"
                     />
                     <img
-                        src={product.linkImg[1]}
+                        src={product?.linkImg[1]}
                         alt="Nike"
                     />
                 </div>
                 <div className={cx('decs')}>
-                    <div className={cx('name')}>{product.name}</div>
-                    <div className={cx('price')}>{formatter.format(product.price)}</div>
+                    <div className={cx('name')}>{product?.name}</div>
+                    <div className={cx('price')}>{formatter.format(product?.price)}</div>
                 </div>
             </Link>
         </div>

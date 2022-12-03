@@ -24,7 +24,7 @@ const ManageProduct = () => {
 
     const dispatch = useDispatch()
     const handleInputSearch = (value) => {
-        setValueSearch(value)
+        setValueSearch(value.toLowerCase())
     }
 
     const onCloseModal = () => {
@@ -123,7 +123,7 @@ const ManageProduct = () => {
                 </tr>
                 {productList
                     .slice(4 * (currentPage - 1), 4 * currentPage)
-                    .filter((item) => item.name.includes(valueSearch))
+                    .filter((item) => item.name.toLowerCase().includes(valueSearch))
                     .map((item, index) => (
                         <tr
                             key={index}

@@ -57,8 +57,11 @@ function Header() {
         setIsOCMenu(!isOCMenu)
     }
     const handleInputSearch = (value) => {
-        const data = producList.filter((item) => item.name.includes(value))
-        if (value.length === 0) {
+        const _value = value.toLowerCase()
+        const data = producList.filter((item) => {
+            return item.name.toLowerCase().includes(_value)
+        })
+        if (_value.length === 0) {
             setSearchResult([])
             setShowResult(false)
         } else {

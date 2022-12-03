@@ -87,7 +87,7 @@ function Checkout() {
                                         required={true}
                                         type="text"
                                         id={cx('address')}
-                                        value={currentUser.address}
+                                        value={infoUser.address}
                                     />
                                 </div>
                                 <div className={cx('inputUserType')}>
@@ -100,7 +100,7 @@ function Checkout() {
                                         required={true}
                                         type="text"
                                         id={cx('phone')}
-                                        value={currentUser.phoneNumber}
+                                        value={infoUser.phoneNumber}
                                     />
                                 </div>
                                 <div className={cx('inputUserType')}>

@@ -32,6 +32,7 @@ function Checkout() {
         phoneNumber: currentUser.phoneNumber,
         size: cart.map((item) => item.size),
         amount: cart.map((item) => item.amount),
+        paymentMethod: 1
     })
     const [infoUserUpdate, setInfoUserUpdate] = useState({
         address: '',
@@ -55,9 +56,9 @@ function Checkout() {
             if (res.data) {
                 showSuccessToast('Order Success', 'Success', 'success')
                 localStorage.removeItem('cart')
-                setTimeout(() => {
-                    window.location.replace('/')
-                }, 1000)
+                // setTimeout(() => {
+                //     window.location.replace('/')
+                // }, 1000)
             }
         }
     }
@@ -65,7 +66,7 @@ function Checkout() {
         <div className={cx('wrapper')}>
             <div
                 className={cx('content')}
-                style={{ minHeight: '600px' }}
+                style={{ minHeight: '600px', display: 'flex', alignItems: 'center' }}
             >
                 <div className="grid wide">
                     <div className="row noGutters">
@@ -126,6 +127,38 @@ function Checkout() {
                                                 {formatter.format(item.condition)}đ
                                             </option>
                                         ))}
+                                    </select>
+                                </div>
+                                <div className={cx('inputUserType')}>
+                                    <div className={cx('paymentMethods')}>Phương thức thanh toán</div>
+                                    <select
+                                        onChange={(e) => {
+                                            // setPaymentMethod(e.target.value)
+                                            setInfoUser({
+                                                ...infoUser,
+                                                paymentMethod: Number(e.target.value)
+                                            })
+                                        }}
+                                    >
+                                        <option value={1}>Thanh toán khi nhận hàng (COD)</option>
+                                        <option value={0}>
+                                            Chuyển khoản qua ngân hàng
+                                        </option>
+                                        <option disabled style={{fontStyle: 'italic'}}>
+                                            Bạn có thể chuyển khoản tổng giá trị đơn hàng tới STK:
+                                        </option>
+                                        <option disabled style={{fontStyle: 'italic'}}>
+                                            * Chủ TK: Nguyễn Văn Duy - STK: 1666666606 | Ngân hàng MB Bank
+                                        </option>
+                                        <option disabled style={{fontStyle: 'italic'}}>
+                                            * Nội dung: Tên khách hàng - Tên sản phẩm, số lượng sản phẩm, mã SP, số đt đặt hàng
+                                        </option>
+                                        <option disabled style={{fontStyle: 'italic'}}>
+                                            (vui lòng điền đúng nội dung để T20 được phục vụ bạn tốt nhất).
+                                        </option>
+                                        <option disabled style={{fontStyle: 'italic'}}>
+                                            (Trong quá trình mua hàng nếu đợi quá lâu vui lòng liên hệ hotline: 0898688369).
+                                        </option>
                                     </select>
                                 </div>
                                 <input

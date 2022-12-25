@@ -22,8 +22,8 @@ function DetailProduct() {
     const cart = useSelector((state) => state.cart.products || [])
     const [feedbacks, setFeedbacks] = useState([])
     const [newFeedback, setNewFeedback] = useState('')
-    const [size, setSize] = useState(detailProduct.size[0].size)
-    const [imgPro, setImgPro] = useState(detailProduct.linkImg[0])
+    const [size, setSize] = useState(detailProduct?.size[0].size)
+    const [imgPro, setImgPro] = useState(detailProduct?.linkImg[0])
     const [active, setActive] = useState(0)
     useEffect(() => {
         loadFeedback()
@@ -32,6 +32,7 @@ function DetailProduct() {
     const loadFeedback = async () => {
         const res = await getAllFeedbackByProApi({ productId: param.id })
         setFeedbacks(res.data)
+        setNewFeedback('')
     }
 
     const handleSendComment = async () => {
@@ -40,10 +41,11 @@ function DetailProduct() {
             owner: userInfor.id,
             productId: param.id,
         })
+        
         if (res.status === 200) {
             showSuccessToast('Gửi feedback thành công', 'Thành công', 'success')
         } else {
-            showSuccessToast('Có lỗi xảy ra, vui lòng thử lại!', 'ERROR', 'error')
+            showSuccessToast('Bạn chưa mua sản phẩm!', 'ERROR', 'error')
         }
         loadFeedback()
     }
@@ -61,10 +63,12 @@ function DetailProduct() {
         }
         showSuccessToast('Add product success', 'Success', 'success')
     }
+
+    console.log(size);
     return (
         <div className={cx('wrapper')}>
             <Navbar
-                name={detailProduct.name}
+                name={detailProduct?.name}
                 disable={true}
             />
             <div
@@ -80,7 +84,7 @@ function DetailProduct() {
                             />
                         </div>
                         <div className={cx('otherImg', 'row')}>
-                            {detailProduct.linkImg.map((imgItem, index) => (
+                            {detailProduct?.linkImg.map((imgItem, index) => (
                                 <div
                                     key={index}
                                     className={cx('img1', 'col', 'c-3', active === index && 'active')}
@@ -98,9 +102,9 @@ function DetailProduct() {
                         </div>
                     </div>
                     <div className={cx('imgDetail', 'col', 'm-6', 'c-12')}>
-                        <div className={cx('namePro')}>{detailProduct.name}</div>
-                        <div className={cx('codePro')}>SKU: 1110</div>
-                        <div className={cx('pricePro')}>{formatter.format(detailProduct.price)}</div>
+                        <div className={cx('namePro')}>{detailProduct?.name}</div>
+                        <div className={cx('codePro')}>Color: {detailProduct?.color}</div>
+                        <div className={cx('pricePro')}>{formatter.format(detailProduct?.price)}</div>
                         <div className={cx('sizePro')}>
                             <div className={cx('sizeTitle')}>Size:</div>
                             <select
@@ -108,19 +112,26 @@ function DetailProduct() {
                                 onChange={(e) => setSize(e.target.value)}
                                 style={{ width: '100px', marginLeft: '5px' }}
                             >
-                                {detailProduct.size.map((item) => {
+                                {detailProduct?.size.map((item) => {
                                     return (
-                                        <option
-                                            className={cx('sizeDetail')}
-                                            key={item.size}
-                                            value={item.size}
-                                        >
-                                            {item.size}
-                                        </option>
+                                        <>
+                                            <option
+                                                className={cx('sizeDetail')}
+                                                key={item.size}
+                                                value={item.size}
+                                            >
+                                                {item.size}
+                                            </option>
+                                        </>
                                     )
                                 })}
                             </select>
-                            {/* <div className={cx('sizeDetail', 'activeSize')}>38</div> */}
+                        </div>
+                        <div>
+                            Amount:&nbsp;
+                            {detailProduct?.size
+                            .filter(item => item.size.toString() === size)
+                            .map((item) => item)?.[0]?.amount}
                         </div>
                         <div className={cx('actionPro')}>
                             <div className={cx('qntPro')}>
@@ -178,9 +189,9 @@ function DetailProduct() {
                             Gửi
                         </button>
                     </div>
-                    {feedbacks.map((item) => {
+                    {feedbacks.map((item, index) => {
                         return (
-                            <div style={{ display: 'flex', borderBottom: '1px solid #ccc', padding: '2rem 0' }}>
+                            <div key={index} style={{ display: 'flex', borderBottom: '1px solid #ccc', padding: '2rem 0' }}>
                                 <div>
                                     <div className={cx('avatar')}>
                                         <FontAwesomeIcon icon={faUser} />
@@ -188,7 +199,7 @@ function DetailProduct() {
                                 </div>
                                 <div>
                                     <div>
-                                        {item.owner.name}
+                                        {item?.owner?.name ?? userInfor?.name}
                                         <br />
                                         <small>
                                             {new Date(item.createdAt).toLocaleDateString('en-us', {
@@ -203,7 +214,8 @@ function DetailProduct() {
                                 </div>
                             </div>
                         )
-                    })}
+                    })
+                    }
                 </div>
             </div>
         </div>

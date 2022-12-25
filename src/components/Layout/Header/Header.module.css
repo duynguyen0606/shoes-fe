@@ -16,9 +16,6 @@
 .wrapperTop {
     padding: 14px 40px;
 }
-.wrapperBottom {
-    padding: 18px 40px;
-}
 
 .wrapperBottom.sticky {
     position: fixed;

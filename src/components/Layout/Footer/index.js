@@ -2,14 +2,14 @@ import classNames from 'classnames/bind'
 import styles from './Footer.module.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
 const contact = [
     {
         icon: <FontAwesomeIcon icon={faHouseChimney} />,
-        content: 'Đại học Bách Khoa Hà Nội',
+        content: 'Học viện kỹ thuật mật mã',
     },
     {
         icon: <FontAwesomeIcon icon={faEnvelope} />,
@@ -40,12 +40,32 @@ function Footer() {
                     </div>
                     <div className={cx('about', 'l-3', 'col', 'm-6', 'c-6')}>
                         <div className={cx('aboutTitle')}>Information</div>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
                         <Link
-                            to="/about"
+                            to="#"
+                            className={cx('aboutContent')}
+                        >
+                            Become a member
+                        </Link>
+                        <Link
+                            to="#"
+                            className={cx('aboutContent')}
+                        >
+                            sign up for email
+                        </Link>
+                        <Link
+                            to="#"
+                            className={cx('aboutContent')}
+                        >
+                            Send us feedback
+                        </Link>
+                        <Link
+                            to="#"
                             className={cx('aboutContent')}
                         >
                             About Us
                         </Link>
+                        </div>
                     </div>
                     <div className={cx('contact', 'l-3', 'col', 'm-6', 'c-6')}>
                         <div className={cx('contactTitle')}>Contact Us</div>
@@ -72,6 +92,18 @@ function Footer() {
                                 <FontAwesomeIcon
                                     className={cx('insta')}
                                     icon={faInstagram}
+                                />
+                            </div>
+                            <div className={cx('followIcon')}>
+                                <FontAwesomeIcon
+                                    className={cx('youtube')}
+                                    icon={faYoutube}
+                                />
+                            </div>
+                            <div className={cx('followIcon')}>
+                                <FontAwesomeIcon
+                                    className={cx('tiktok')}
+                                    icon={faTiktok}
                                 />
                             </div>
                         </div>

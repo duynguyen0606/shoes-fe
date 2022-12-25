@@ -21,7 +21,6 @@ const ManageProduct = () => {
     const [openModalConfirm, setOpenModalConfirm] = useState(false)
     const [itemDelete, setItemDelete] = useState({})
     const [currentPage, setCurrentPage] = useState(1)
-
     const dispatch = useDispatch()
     const handleInputSearch = (value) => {
         setValueSearch(value.toLowerCase())
@@ -30,6 +29,7 @@ const ManageProduct = () => {
     const onCloseModal = () => {
         setOpenModal(false)
     }
+
     const handleAddNewProduct = async (data = {}, _id = undefined, isModalConfirm = false) => {
         if (isModalConfirm) {
             const res = await apiDeleteProduct({ _id: itemDelete._id })
@@ -74,6 +74,8 @@ const ManageProduct = () => {
             showSuccessToast('Out of product', 'Failed', 'error')
         }
     }
+
+    console.log(proDetail);
     return (
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '6rem 2rem' }}>
             <div className={cx('mainRight')}>

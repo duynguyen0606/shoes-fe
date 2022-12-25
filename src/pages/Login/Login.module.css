@@ -13,6 +13,10 @@
     padding: 40px;
 }
 
+.formContainer .actionSubmit {
+    text-align: center;
+}
+
 .loginText {
     text-align: center;
 }
@@ -30,18 +34,27 @@
     margin: 30px 0;
 }
 
+.loginForm .form-item .error-message {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.loginForm .form-item {
+    margin-bottom: 15px;
+}
+
 .email,
-.password {
-    border: 1px solid var(--color-hover);
+.password,
+.name {
+    border: 1px solid rgb(141, 141, 141);
     padding: 16px 26px;
-    margin: 15px 0;
     width: 100%;
     font-size: 1.6rem;
     border-radius: 10px;
 }
 
 .submit {
-
     color: var(--white);
     background-color: var(--primary);
     padding: 10px 25px;

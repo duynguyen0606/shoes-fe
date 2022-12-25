@@ -19,6 +19,10 @@ const userFeatures = [
         id: 3,
         title: 'Orders',
     },
+    {
+        id: 4,
+        title: "Update Infor"
+    }
 ]
 function User() {
     const userInfor = useSelector((state) => state.user)
@@ -51,6 +55,7 @@ function User() {
                                         user={active.id === 1 && userInfor.inforUser}
                                         changePass={active.id === 2}
                                         orders={active.id === 3}
+                                        updateInfor={active.id === 4}
                                     />
                                 </div>
                             </div>

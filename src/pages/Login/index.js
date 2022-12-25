@@ -2,25 +2,25 @@ import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classnames from 'classnames/bind'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
 import { apiLogin, apiRegister } from '../../api/userAPI'
 import { loginSuccess } from '../../features/user/userSlice'
+import { isValidateAccount, isValidEmail } from '../../utils/format'
 import { showSuccessToast } from '../../utils/toastMessage'
 import styles from './Login.module.css'
 const cx = classnames.bind(styles)
 
 function Login() {
-    const [register, setRegister] = useState(false)
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const navigation = useNavigate()
+    const [isRegister, setIsRegister] = useState(false)
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: 'onChange'
+    });
     const dispatch = useDispatch()
 
-    const handleLoginOrRegister = async (e) => {
-        e.preventDefault()
-        if (register) {
+    const handleLoginOrRegister = async (values) => {
+        const {email, password, name} = values
+        if (isRegister) {
             const res = await apiRegister({ email, password, name })
             if (res.data.status === 1) {
                 dispatch(loginSuccess(res.data.user))
@@ -46,7 +46,7 @@ function Login() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
-                <form onSubmit={(e) => handleLoginOrRegister(e)}>
+                <form onSubmit={handleSubmit(values => handleLoginOrRegister(values))}>
                     <div className={cx('formContainer')}>
                         <div className={cx('loginText')}>
                             <div className={cx('loginIcon')}>
@@ -58,23 +58,23 @@ function Login() {
                             className={cx('loginForm')}
                             style={{ width: '350px' }}
                         >
-                            <label
-                                htmlFor="email"
-                                className={cx('placeHolder')}
-                            >
-                                Email
-                            </label>
-                            <input
-                                id="email"
-                                className={cx('email')}
-                                type="email"
-                                spellCheck={false}
-                                autoFocus
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            {register && (
-                                <>
+                            <div className={cx("form-item")}>
+                                <label
+                                    htmlFor="email"
+                                    className={cx('placeHolder')}
+                                >
+                                    Email
+                                </label>
+                                <input
+                                    id="email"
+                                    className={cx('email')}
+                                    autoFocus
+                                    {...register("email", { required: true, validate: (email) => isValidEmail(email) })}
+                                />
+                                {errors.email?.type === "validate" && <div className={cx('error-message')}>Email is valid!</div>}
+                            </div>
+                            {isRegister && (
+                                <div className={cx("form-item")}>
                                     <label
                                         htmlFor="name"
                                         className={cx('placeHolder')}
@@ -83,38 +83,40 @@ function Login() {
                                     </label>
                                     <input
                                         id="name"
-                                        className={cx('email')}
-                                        type="text"
+                                        className={cx('name')}
                                         autoFocus
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
+                                        {...register("name",  {required: true, validate: (name) => isValidateAccount(name)})}
                                     />
-                                </>
+                                    {errors.name?.type === "validate" && <div className={cx("error-message")}>Account name cannot contain special characters!</div> }
+                               </div>
                             )}
-                            <label
-                                htmlFor="password"
-                                className={cx('placeHolder')}
-                            >
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                className={cx('password')}
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                            <div className={cx('form-item')}>
+                                <label
+                                    htmlFor="password"
+                                    className={cx('placeHolder')}
+                                >
+                                    Password
+                                </label>
+                                <input
+                                    id="password"
+                                    className={cx('password')}
+                                    type="password"
+                                    {...register("password", {required: true, minLength: 6})}
+                                />
+                                {errors.password?.type === "required" && <div className={cx('error-message')}>Password is required!</div> }
+                                {errors.password?.type === "minLength" && <div className={cx('error-message')}>Password must be at least 6 characters!</div> }
+                            </div>
                         </div>
 
                         <div className={cx('actionSubmit')}>
-                            <button className={cx('submit')}>{register ? 'Sign up' : 'Sign In'}</button>
+                            <button className={cx('submit')} type="submit" onSubmit={handleSubmit(values => handleLoginOrRegister(values))}>{isRegister ? 'Sign up' : 'Sign In'}</button>
                             <br />
-                            {register ? (
+                            {isRegister ? (
                                 <span>
                                     Bạn đã có tài khoản?{' '}
                                     <span
                                         style={{ color: '#d8355a', cursor: 'pointer' }}
-                                        onClick={() => setRegister(false)}
+                                        onClick={() => setIsRegister(false)}
                                     >
                                         Đăng nhập
                                     </span>
@@ -124,7 +126,7 @@ function Login() {
                                     Bạn chưa có tài khoản?{' '}
                                     <span
                                         style={{ color: '#d8355a', cursor: 'pointer' }}
-                                        onClick={() => setRegister(true)}
+                                        onClick={() => setIsRegister(true)}
                                     >
                                         Đăng ký
                                     </span>

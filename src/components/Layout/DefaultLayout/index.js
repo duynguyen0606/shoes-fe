@@ -12,7 +12,7 @@ function DefaultLayout({ children }) {
     return (
         <div className={cx('wrapper')}>
             {header}
-            <div className={cx('container')}>{children}</div>
+            <div className={cx('container')} style={{paddingBottom: '40px'}}>{children}</div>
             {footer}
         </div>
     )

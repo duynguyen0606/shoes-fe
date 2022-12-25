@@ -7,8 +7,9 @@ import { formatter } from '../../../utils/tool'
 import { showSuccessToast } from '../../../utils/toastMessage'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useSelector } from 'react-redux'
-import { apiChangePassword } from '../../../api/userAPI'
+import { useDispatch, useSelector } from 'react-redux'
+import { apiChangePassword, apiUpdateProfile } from '../../../api/userAPI'
+import { updateProfile } from '../../../features/user/userSlice'
 
 const cx = classnames.bind(styles)
 
@@ -30,7 +31,7 @@ const stateOrder = [
         value: 'Cancel',
     },
 ]
-function UserAction({ user, changePass, orders, title }) {
+function UserAction({ user, changePass, orders, title, updateInfor }) {
     const [currentPage, setCurrentPage] = useState(1)
     const [active, setActive] = useState({ id: 0, value: 'Pending' })
     const [order, setOrder] = useState([]);
@@ -39,13 +40,22 @@ function UserAction({ user, changePass, orders, title }) {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState('');
     const orderOProStatus = order.filter((item) => item.status === active.id)
+    const userInfor = useSelector(state => state.user.inforUser)
+    const [name, setName] = useState(userInfor?.name)
+    const [address, setAddress] = useState(userInfor?.address)
+    const [phoneNumber, setPhoneNumber] = useState(userInfor?.phoneNumber)
+    const dispatch = useDispatch()
     useEffect(() => {
-        loadOrders()
-    }, [])
+        if(currentUser?._id) {
+            loadOrders()
+        }
+    }, [currentUser?._id])
+
     const loadOrders = async () => {
-        const res = await getListOrderByUserId({ id: currentUser.id })
+        const res = await getListOrderByUserId({ id: currentUser?._id })
         setOrder([...res.data])
     }
+
     const handleCancelOrder = async (reqBody) => {
         const res = await apiCancelOrder(reqBody)
         if (res.data) {
@@ -79,6 +89,30 @@ function UserAction({ user, changePass, orders, title }) {
             window.location.replace('/');
         }, 1000)
     }
+
+    const handleUpdateUserInfor = async () => {
+        const response = await apiUpdateProfile({
+            name,
+            phoneNumber,
+            address
+        })
+        console.log(response)
+        if(response.status === 201) {
+            dispatch(updateProfile({
+                name: response.data?.name,
+                phoneNumber: response.data?.phoneNumber,
+                address: response.data?.address
+            }))
+            showSuccessToast("Thay đổi thông tin thành công", "Thành công", "success");
+        }else {
+            showSuccessToast("Có lỗi xảy ra, vui lòng thử lại!", "Cảnh báo", "error");
+        }
+
+        // setTimeout(() => {
+        //     window.location.replace('/')
+        // }, 1000)
+    }
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('contentTitle')}>{title}</div>
@@ -209,6 +243,28 @@ function UserAction({ user, changePass, orders, title }) {
                             <FontAwesomeIcon icon={faAngleRight} />
                         </div>
                     </div>
+                </div>
+            )}
+            {!!updateInfor && (
+                <div>
+                <div className={cx('passTitle')}>
+                    <div className={cx('subPassTitle')}>Họ và tên </div>
+                    <input type="text" className={cx('name')} value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
+                <div className={cx('passTitle')}>
+                    <div className={cx('subPassTitle')}>Số điện thoại </div>
+                    <input type="text" className={cx('phoneNumber')} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
+                </div>
+                <div className={cx('passTitle')}>
+                    <div className={cx('subPassTitle')}>Địa chỉ </div>
+                    <input type="text" className={cx('address')} value={address} onChange={(e) => setAddress(e.target.value)}/>
+                </div>
+                <div style={{marginLeft: '70%'}}
+                    className={cx('cancelPro')}
+                    onClick={handleUpdateUserInfor}
+                >
+                    Update Infor
+                </div>
                 </div>
             )}
         </div>

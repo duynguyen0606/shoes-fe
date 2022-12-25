@@ -6,7 +6,7 @@ const initialState = {
         email: '',
         name: '',
         address: '',
-        phone: '',
+        phoneNumber: '',
         purchaseHistory: [],
         role: 0,
     },
@@ -25,7 +25,8 @@ const userSlice = createSlice({
         },
         updateProfile: (state, action) => {
             state.inforUser.address = action.payload.address
-            state.inforUser.phone = action.payload.phoneNumber
+            state.inforUser.phoneNumber = action.payload.phoneNumber
+            state.inforUser.name = action.payload.name
         },
     },
 })

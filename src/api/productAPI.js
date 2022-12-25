@@ -10,6 +10,7 @@ export const apiAddProduct = async (data) => {
         }
     })
 }
+
 export const apiUpdateProduct = async (reqBody) => {
     return await axios.post('http://localhost:8000/product/update-product', reqBody, {
         headers:{
@@ -23,4 +24,7 @@ export const apiDeleteProduct = async (reqBody) => {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     })
+}
+export const apiLoadProductByFilter = async (reqBody) => {
+    return await axios.get('http://localhost:8000/product/filter', reqBody);
 }

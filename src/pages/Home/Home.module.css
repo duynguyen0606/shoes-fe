@@ -17,6 +17,7 @@
     width: 50%;
     transform: translateY(-50%);
 }
+
 .title {
     color: #ffffff;
     font-family: Poppins;
@@ -46,16 +47,21 @@
 }
 
 .endowIcon {
-    padding-right: 20px;
     font-size: 2.6rem;
     color: var(--color-hover);
+}
+
+.endowIcon {
+    text-align: center;
 }
 .endowTitle {
     font-size: 1.6rem;
     font-weight: 600;
+    text-align: center;
 }
 .endowDesc {
     font-size: 1.4rem;
+    text-align: center;
 }
 
 /* Sale */

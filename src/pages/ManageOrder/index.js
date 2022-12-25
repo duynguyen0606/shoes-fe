@@ -33,6 +33,7 @@ const ManageOrder = () => {
     const [listOrders, setListOrders] = useState([])
     const [statusTable, setStatusTable] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
+    const [formatListOrders, setFormatListOrders] = useState([])
     const totalRevenue = listOrders
         .filter((item) => item.status === 2)
         .reduce((pre, cur) => {
@@ -68,6 +69,31 @@ const ManageOrder = () => {
 
         getListOrder()
     }
+
+    useEffect(() => {
+        if(listOrders.length > 0) {
+            setFormatListOrders(
+                listOrders.map(item => {
+                    return {
+                        status: item?.status,
+                        productId: item?.products[0]._id,
+                        nameProduct: item?.products[0].name,
+                        price: `${item?.totalPrice}đ`,
+                        quantity: item?.amount,
+                        color: item?.products[0].color,
+                        size:  item?.size,
+                        nameUser: item?.userId.name,
+                        address: item?.userId.address,
+                        phoneNumber: item?.userId.phoneNumber,
+                        paymentMethod: `${item?.paymentMethod === 1 ? 'Ship COD' : 'Banking'}`,
+                        linkImage: item?.products[0]?.linkImg[0]
+                    }
+                })
+                .filter(item => item.status === 2)
+            )
+        }
+    }, [active, listOrders])
+    
     return (
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '6rem 2rem' }}>
             <div className={cx('orderWrapper')}>
@@ -112,13 +138,7 @@ const ManageOrder = () => {
                 <div className={cx('exportCSV')}>
                     <ExportReactCSV
                         fileName={`Doanh thu`}
-                        csvData={listOrders
-                            .map((item) => ({
-                                ...item,
-                                products: JSON.stringify(item.products),
-                                userId: item.userId._id,
-                            }))
-                            .filter((item) => item.status === 2)}
+                        csvData={formatListOrders}
                     />
                 </div>
             </div>
@@ -132,6 +152,7 @@ const ManageOrder = () => {
                     <th colSpan="1">Sản phẩm</th>
                     <th>Tổng đơn</th>
                     <th>Địa chỉ</th>
+                    <th>Thanh toán</th>
                     <th>SĐT khách hàng</th>
                     <th>Trạng thái đơn hàng</th>
                 </tr>
@@ -153,6 +174,7 @@ const ManageOrder = () => {
                             </td>
                             <td>{formatter.format(item.totalPrice)}</td>
                             <td>{item.address}</td>
+                            <td>{item.paymentMethod === 0 ? 'Banking' : 'Cod'}</td>
                             <td>{item.phoneNumber}</td>
                             <td>
                                 <select
